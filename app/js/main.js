@@ -35,9 +35,13 @@ scene.add(stars);
 var sun, sun_geom, sun_mat;
 sun_geom = new THREE.SphereGeometry(2030,80,80);
 
-var texture = THREE.ImageUtils.loadTexture('images/sun.jpg');
-texture.anisotropy = 8;
-sun_mat = new THREE.MeshPhongMaterial({map: texture, emissive: 0xffffff});
+var sun_texture = new THREE.TextureLoader().load('images/sun.jpg');
+sun_texture.anisotropy = 8;
+var sun_mat = new THREE.MeshBasicMaterial({
+	map: sun_texture,
+	overdraw: true
+});
+
 
 sun = new THREE.Mesh(sun_geom, sun_mat);
 scene.add(sun);
@@ -50,7 +54,7 @@ earth_mat = new THREE.MeshNormalMaterial();
 earth = new THREE.Mesh(earth_geom, earth_mat);
 scene.add(earth);
 
-alert();
+
 
 render = new THREE.WebGLRenderer();
 render.setSize(W,H);
