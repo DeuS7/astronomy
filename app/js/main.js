@@ -50,7 +50,7 @@ earth_mat = new THREE.MeshNormalMaterial();
 earth = new THREE.Mesh(earth_geom, earth_mat);
 scene.add(earth);
 
-
+alert();
 
 render = new THREE.WebGLRenderer();
 render.setSize(W,H);
