@@ -1,4 +1,4 @@
-var scene, camera, render, container;
+var scene, camera, render, container, light, ambient;
 var W,H;
 
 W = parseInt(document.body.clientWidth);
@@ -8,8 +8,16 @@ container = document.createElement("div");
 document.body.appendChild(container);
 
 camera = new THREE.PerspectiveCamera(45,W/H,1,100000);
-camera.position.z = 39000;
+camera.position.z = 20000;
 scene = new THREE.Scene();
+scene.add(camera)
+
+light = new THREE.PointLight(0xffffff,3,25000);
+light.position.set(0,0,0);
+light.castShadow = true;
+light.shadowMapWidth = 2048;
+light.shadowMapHeight = 2048;
+scene.add(light);
 
 //stars
 
@@ -53,13 +61,33 @@ earth_geom = new THREE.SphereGeometry(150,20,20);
 
 var earth_texture = new THREE.TextureLoader().load('images/earth.jpg');
 earth_texture.anisotropy = 8;
-var earth_mat = new THREE.MeshBasicMaterial({
+var earth_mat = new THREE.MeshLambertMaterial({
 	map: earth_texture,
 	overdraw: true
 });
 
 earth = new THREE.Mesh(earth_geom, earth_mat);
+earth.castShadow = true;
 scene.add(earth);
+
+var orbit_earth_geom = new THREE.Geometry();
+var earth_orbit_mat = new THREE.ParticleBasicMaterial({
+	color: 0xffffff,
+	opacity: 1,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<10000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*7500;
+	vertex.z = Math.cos(Math.PI/180*i)*7500;
+	orbit_earth_geom.vertices.push(vertex);
+}
+
+var earth_orbit = new THREE.ParticleSystem(orbit_earth_geom, earth_orbit_mat);
+earth_orbit.castShadow = true;
+scene.add(earth_orbit);
 
 //Mercury
 
@@ -68,13 +96,33 @@ mercury_geom = new THREE.SphereGeometry(90,20,20);
 
 var mercury_texture = new THREE.TextureLoader().load('images/mercury.jpg');
 mercury_texture.anisotropy = 8;
-var mercury_mat = new THREE.MeshBasicMaterial({
+var mercury_mat = new THREE.MeshLambertMaterial({
 	map: mercury_texture,
 	overdraw: true
 });
 
 mercury = new THREE.Mesh(mercury_geom, mercury_mat);
+mercury.castShadow = true;
 scene.add(mercury);
+
+var orbit_mercury_geom = new THREE.Geometry();
+var mercury_orbit_mat = new THREE.ParticleBasicMaterial({
+	color: 0xffffff,
+	opacity: 1,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<10000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*3000;
+	vertex.z = Math.cos(Math.PI/180*i)*3000;
+	orbit_mercury_geom.vertices.push(vertex);
+}
+
+var mercury_orbit = new THREE.ParticleSystem(orbit_mercury_geom, mercury_orbit_mat);
+mercury_orbit.castShadow = true;
+scene.add(mercury_orbit);
 
 //venus
 
@@ -83,13 +131,33 @@ venus_geom = new THREE.SphereGeometry(120,20,20);
 
 var venus_texture = new THREE.TextureLoader().load('images/venus.jpg');
 venus_texture.anisotropy = 8;
-var venus_mat = new THREE.MeshBasicMaterial({
+var venus_mat = new THREE.MeshLambertMaterial({
 	map: venus_texture,
 	overdraw: true
 });
 
 venus = new THREE.Mesh(venus_geom, venus_mat);
+venus.castShadow = true;
 scene.add(venus);
+
+var orbit_vanus_geom = new THREE.Geometry();
+var vanus_orbit_mat = new THREE.ParticleBasicMaterial({
+	color: 0xffffff,
+	opacity: 1,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<10000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*4500;
+	vertex.z = Math.cos(Math.PI/180*i)*4500;
+	orbit_vanus_geom.vertices.push(vertex);
+}
+
+var vanus_orbit = new THREE.ParticleSystem(orbit_vanus_geom, vanus_orbit_mat);
+vanus_orbit.castShadow = true;
+scene.add(vanus_orbit);
 
 //mars
 
@@ -98,13 +166,33 @@ mars_geom = new THREE.SphereGeometry(75,20,20);
 
 var mars_texture = new THREE.TextureLoader().load('images/mars.jpg');
 mars_texture.anisotropy = 8;
-var mars_mat = new THREE.MeshBasicMaterial({
+var mars_mat = new THREE.MeshLambertMaterial({
 	map: mars_texture,
 	overdraw: true
 });
 
 mars = new THREE.Mesh(mars_geom, mars_mat);
+mars.castShadow = true;
 scene.add(mars);
+
+var orbit_mars_geom = new THREE.Geometry();
+var mars_orbit_mat = new THREE.ParticleBasicMaterial({
+	color: 0xffffff,
+	opacity: 1,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<10000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*9000;
+	vertex.z = Math.cos(Math.PI/180*i)*9000;
+	orbit_mars_geom.vertices.push(vertex);
+}
+
+var mars_orbit = new THREE.ParticleSystem(orbit_mars_geom, mars_orbit_mat);
+mars_orbit.castShadow = true;
+scene.add(mars_orbit);
 
 //jupiter
 
@@ -113,13 +201,33 @@ jupiter_geom = new THREE.SphereGeometry(350,20,20);
 
 var jupiter_texture = new THREE.TextureLoader().load('images/jupiter.jpg');
 jupiter_texture.anisotropy = 8;
-var jupiter_mat = new THREE.MeshBasicMaterial({
+var jupiter_mat = new THREE.MeshLambertMaterial({
 	map: jupiter_texture,
 	overdraw: true
 });
 
 jupiter = new THREE.Mesh(jupiter_geom, jupiter_mat);
+jupiter.castShadow = true;
 scene.add(jupiter);
+
+var orbit_jupiter_geom = new THREE.Geometry();
+var jupiter_orbit_mat = new THREE.ParticleBasicMaterial({
+	color: 0xffffff,
+	opacity: 1,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<10000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*11000;
+	vertex.z = Math.cos(Math.PI/180*i)*11000;
+	orbit_jupiter_geom.vertices.push(vertex);
+}
+
+var jupiter_orbit = new THREE.ParticleSystem(orbit_jupiter_geom, jupiter_orbit_mat);
+jupiter_orbit.castShadow = true;
+scene.add(jupiter_orbit);
 
 //saturn
 
@@ -128,13 +236,55 @@ saturn_geom = new THREE.SphereGeometry(200,20,20);
 
 var saturn_texture = new THREE.TextureLoader().load('images/saturn.jpg');
 saturn_texture.anisotropy = 8;
-var saturn_mat = new THREE.MeshBasicMaterial({
+var saturn_mat = new THREE.MeshLambertMaterial({
 	map: saturn_texture,
 	overdraw: true
 });
 
 saturn = new THREE.Mesh(saturn_geom, saturn_mat);
+saturn.castShadow = true;
+saturn.rotation.z = Math.PI/5;
 scene.add(saturn);
+
+var ring_saturn_geom = new THREE.Geometry();
+var ring_saturn_mat = new THREE.ParticleBasicMaterial({
+	color: "#421d00",
+	opacity: 0.3,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<10000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*(550-i/50);
+	vertex.y = Math.random()*20;
+	vertex.z = Math.cos(Math.PI/180*i)*(550-i/50);
+	ring_saturn_geom.vertices.push(vertex);
+}
+
+var ring_saturn = new THREE.ParticleSystem(ring_saturn_geom, ring_saturn_mat);
+ring_saturn.castShadow = true;
+ring_saturn.rotation.z = Math.PI/5;
+scene.add(ring_saturn);
+
+var orbit_saturn_geom = new THREE.Geometry();
+var saturn_orbit_mat = new THREE.ParticleBasicMaterial({
+	color: 0xffffff,
+	opacity: 1,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<10000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*13500;
+	vertex.z = Math.cos(Math.PI/180*i)*13500;
+	orbit_saturn_geom.vertices.push(vertex);
+}
+
+var saturn_orbit = new THREE.ParticleSystem(orbit_saturn_geom, saturn_orbit_mat);
+saturn_orbit.castShadow = true;
+scene.add(saturn_orbit);
 
 //uranus
 
@@ -143,13 +293,33 @@ uranus_geom = new THREE.SphereGeometry(200,20,20);
 
 var uranus_texture = new THREE.TextureLoader().load('images/uranus.jpg');
 uranus_texture.anisotropy = 8;
-var uranus_mat = new THREE.MeshBasicMaterial({
+var uranus_mat = new THREE.MeshLambertMaterial({
 	map: uranus_texture,
 	overdraw: true
 });
 
 uranus = new THREE.Mesh(uranus_geom, uranus_mat);
+uranus.castShadow = true;
 scene.add(uranus);
+
+var orbit_uranus_geom = new THREE.Geometry();
+var uranus_orbit_mat = new THREE.ParticleBasicMaterial({
+	color: 0xffffff,
+	opacity: 1,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<10000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*15000;
+	vertex.z = Math.cos(Math.PI/180*i)*15000;
+	orbit_uranus_geom.vertices.push(vertex);
+}
+
+var uranus_orbit = new THREE.ParticleSystem(orbit_uranus_geom, uranus_orbit_mat);
+uranus_orbit.castShadow = true;
+scene.add(uranus_orbit);
 
 //neptune
 
@@ -158,13 +328,33 @@ neptune_geom = new THREE.SphereGeometry(175,20,20);
 
 var neptune_texture = new THREE.TextureLoader().load('images/neptune.jpg');
 neptune_texture.anisotropy = 8;
-var neptune_mat = new THREE.MeshBasicMaterial({
+var neptune_mat = new THREE.MeshLambertMaterial({
 	map: neptune_texture,
 	overdraw: true
 });
 
 neptune = new THREE.Mesh(neptune_geom, neptune_mat);
+neptune.castShadow = true;
 scene.add(neptune);
+
+var orbit_neptune_geom = new THREE.Geometry();
+var neptune_orbit_mat = new THREE.ParticleBasicMaterial({
+	color: 0xffffff,
+	opacity: 1,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<10000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*17000;
+	vertex.z = Math.cos(Math.PI/180*i)*17000;
+	orbit_neptune_geom.vertices.push(vertex);
+}
+
+var neptune_orbit = new THREE.ParticleSystem(orbit_neptune_geom, neptune_orbit_mat);
+neptune_orbit.castShadow = true;
+scene.add(neptune_orbit);
 
 //pluto
 
@@ -173,15 +363,33 @@ pluto_geom = new THREE.SphereGeometry(50,20,20);
 
 var pluto_texture = new THREE.TextureLoader().load('images/pluto.jpg');
 pluto_texture.anisotropy = 8;
-var pluto_mat = new THREE.MeshBasicMaterial({
+var pluto_mat = new THREE.MeshLambertMaterial({
 	map: pluto_texture,
 	overdraw: true
 });
 
 pluto = new THREE.Mesh(pluto_geom, pluto_mat);
+pluto.castShadow = true;
 scene.add(pluto);
 
+var orbit_pluto_geom = new THREE.Geometry();
+var pluto_orbit_mat = new THREE.ParticleBasicMaterial({
+	color: 0xffffff,
+	opacity: 1,
+	size: 1,
+	sizeAttenuation: false
+});
 
+for (var i = 0;i<10000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*20000;
+	vertex.z = Math.cos(Math.PI/180*i)*20000;
+	orbit_pluto_geom.vertices.push(vertex);
+}
+
+var pluto_orbit = new THREE.ParticleSystem(orbit_pluto_geom, pluto_orbit_mat);
+pluto_orbit.castShadow = true;
+scene.add(pluto_orbit);
 
 //render
 render = new THREE.WebGLRenderer();
@@ -200,6 +408,16 @@ animate();
 function animate() {
 	requestAnimationFrame(animate);
 	sun.rotation.y += 0.005;
+	earth.rotation.y += 0.1;
+	mercury.rotation.y += 0.1;
+	venus.rotation.y += 0.1;
+	mars.rotation.y += 0.1;
+	jupiter.rotation.y += 0.1;
+	saturn.rotation.y += 0.1;
+	ring_saturn.rotation.y += 0.001;
+	uranus.rotation.y += 0.1;
+	neptune.rotation.y += 0.1;
+	pluto.rotation.y += 0.1;
 
 	earth.position.x = Math.sin(t*0.1)*7500;
 	earth.position.z = Math.cos(t*0.1)*7500;
@@ -213,11 +431,14 @@ function animate() {
 	mars.position.x = Math.sin(t*0.1)*9000;
 	mars.position.z = Math.cos(t*0.1)*9000;
 
-	jupiter.position.x = Math.sin(t*0.15)*11000;
-	jupiter.position.z = Math.cos(t*0.15)*11000;
+	jupiter.position.x = Math.sin(t*0.06)*11000;
+	jupiter.position.z = Math.cos(t*0.06)*11000;
 
 	saturn.position.x = Math.sin(t*0.03)*13500;
 	saturn.position.z = Math.cos(t*0.03)*13500;
+
+	ring_saturn.position.x = saturn.position.x;
+	ring_saturn.position.z = saturn.position.z;
 
 	uranus.position.x = Math.sin(t*0.06)*15000;
 	uranus.position.z = Math.cos(t*0.06)*15000;
@@ -229,7 +450,7 @@ function animate() {
 	pluto.position.z = Math.cos(t*0.01)*20000;
 
 
-	camera.position.y = y * 30;
+	camera.position.y = y * 7;
 	camera.lookAt(scene.position);
 
 	t += Math.PI/180*7;
