@@ -314,7 +314,7 @@ saturn.rotation.z = Math.PI/5;
 scene.add(saturn);
 
 var ring_saturn_geom = new THREE.Geometry();
-var ring_saturn_mat = new THREE.ParticleBasicMaterial({
+var ring_saturn_mat = new THREE.PointCloudMaterial({
 	color: "#421d00",
 	opacity: 1,
 	size: 1,
@@ -464,17 +464,13 @@ render.setSize(W,H);
 render.setClearColor (0x000000, 1);
 container.appendChild(render.domElement);
 var t = 0;
-var y = 0;/*
-var z = 20000;*/
+var y = 0;
 var x = 0;
 
 document.addEventListener('mousemove', function(event) {
 	y = parseInt(event.offsetY);
 	x = parseInt(event.offsetX) - W/2;
-});/*
-document.addEventListener("wheel", function(e) {
-	z += parseInt(e.deltaY)*14;
-});*/
+});
 
 function animate() {
 	requestAnimationFrame(animate);
@@ -542,7 +538,6 @@ function animate() {
 
 	camera.position.y = y * 14;
 	camera.position.x = x * 21;
-	//camera.position.z = z;
 	camera.lookAt(scene.position);
 
 	t += Math.PI/180*7;
