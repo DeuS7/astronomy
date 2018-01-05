@@ -1,8 +1,53 @@
 @import "vars.scss";
 
 body {
-	//background: url(../images/space.jpg) no-repeat top left / cover;
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+}
+
+#preloader {
+	overflow: hidden;
+	background: #110F11;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	transition: 1s all;
+	opacity: 1;
+	#loader {
+		position: relative;
+		#percentage {
+			font-size: 80px;
+			color: white;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	&.done {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+#hiddenImages {
+	display: none;
+}
+
+#navicon {
+	position: fixed;
+	top: 15px;
+	left: 15px;
+	color: white;
+	font-size: 30px;
+	cursor: pointer;
+	user-select: none;
 }

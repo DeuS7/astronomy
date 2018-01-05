@@ -25,7 +25,7 @@ var starsGeometry = new THREE.Geometry();
 var startMaterial = new THREE.ParticleBasicMaterial({color: 0xbbbbbb, opacity: 0.8,  size: 1, sizeAttenuation: false});
 var stars;
 
-for (var i = 0;i<1000;i++) {
+for (var i = 0;i<2000;i++) {
 	var vertex = new THREE.Vector3();
 	vertex.x = Math.random()*2-1;
 	vertex.y = Math.random()*2-1;
@@ -218,6 +218,73 @@ var jupiter_orbit_mat = new THREE.ParticleBasicMaterial({
 	sizeAttenuation: false
 });
 
+//Jupiter Rings
+var ring_jupiter_main_geom = new THREE.Geometry();
+var ring_jupiter_main_mat = new THREE.ParticleBasicMaterial({
+	color: "#565656",
+	opacity: 0.3,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<5000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*(750-i/90);
+	vertex.y = Math.random()*20;
+	vertex.z = Math.cos(Math.PI/180*i)*(750-i/90);
+	ring_jupiter_main_geom.vertices.push(vertex);
+}
+
+var ring_jupiter_main = new THREE.ParticleSystem(ring_jupiter_main_geom, ring_jupiter_main_mat);
+ring_jupiter_main.castShadow = true;
+scene.add(ring_jupiter_main);
+
+
+var ring_jupiter_additional_geom = new THREE.Geometry();
+var ring_jupiter_additional_mat = new THREE.ParticleBasicMaterial({
+	color: "#dddddd",
+	opacity: 0.3,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<5000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*(660-i/40);
+	vertex.y = Math.random()*20;
+	vertex.z = Math.cos(Math.PI/180*i)*(660-i/40);
+	ring_jupiter_additional_geom.vertices.push(vertex);
+}
+
+var ring_jupiter_additional = new THREE.ParticleSystem(ring_jupiter_additional_geom, ring_jupiter_additional_mat);
+ring_jupiter_additional.castShadow = true;
+scene.add(ring_jupiter_additional);
+
+
+
+var ring_jupiter_additional_sub_geom = new THREE.Geometry();
+var ring_jupiter_additional_sub_mat = new THREE.ParticleBasicMaterial({
+	color: "#53365e",
+	opacity: 0.3,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<5000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*(510-i/50);
+	vertex.y = Math.random()*20;
+	vertex.z = Math.cos(Math.PI/180*i)*(510-i/50);
+	ring_jupiter_additional_sub_geom.vertices.push(vertex);
+}
+
+var ring_jupiter_additional_sub = new THREE.ParticleSystem(ring_jupiter_additional_sub_geom, ring_jupiter_additional_sub_mat);
+ring_jupiter_additional_sub.castShadow = true;
+scene.add(ring_jupiter_additional_sub);
+
+
+// Jupiter Orbit
+
 for (var i = 0;i<10000;i++) {
 	var vertex = new THREE.Vector3();
 	vertex.x = Math.sin(Math.PI/180*i)*11000;
@@ -249,16 +316,16 @@ scene.add(saturn);
 var ring_saturn_geom = new THREE.Geometry();
 var ring_saturn_mat = new THREE.ParticleBasicMaterial({
 	color: "#421d00",
-	opacity: 0.3,
+	opacity: 1,
 	size: 1,
 	sizeAttenuation: false
 });
 
-for (var i = 0;i<10000;i++) {
+for (var i = 0;i<7000;i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI/180*i)*(550-i/50);
+	vertex.x = Math.sin(Math.PI/180*i)*(550-i/40);
 	vertex.y = Math.random()*20;
-	vertex.z = Math.cos(Math.PI/180*i)*(550-i/50);
+	vertex.z = Math.cos(Math.PI/180*i)*(550-i/40);
 	ring_saturn_geom.vertices.push(vertex);
 }
 
@@ -397,16 +464,22 @@ render.setSize(W,H);
 render.setClearColor (0x000000, 1);
 container.appendChild(render.domElement);
 var t = 0;
-var y = 0;
+var y = 0;/*
+var z = 20000;*/
+var x = 0;
 
 document.addEventListener('mousemove', function(event) {
 	y = parseInt(event.offsetY);
-});
-
-animate();
+	x = parseInt(event.offsetX) - W/2;
+});/*
+document.addEventListener("wheel", function(e) {
+	z += parseInt(e.deltaY)*14;
+});*/
 
 function animate() {
 	requestAnimationFrame(animate);
+
+	//rotation
 	sun.rotation.y += 0.005;
 	earth.rotation.y += 0.1;
 	mercury.rotation.y += 0.1;
@@ -415,9 +488,28 @@ function animate() {
 	jupiter.rotation.y += 0.1;
 	saturn.rotation.y += 0.1;
 	ring_saturn.rotation.y += 0.001;
+	ring_jupiter_main.rotation.y += 0.1;
+	ring_jupiter_additional.rotation.y += 0.1;
+	ring_jupiter_additional_sub.rotation.y += 0.1;
 	uranus.rotation.y += 0.1;
 	neptune.rotation.y += 0.1;
 	pluto.rotation.y += 0.1;
+
+	//rings
+
+	ring_saturn.position.x = saturn.position.x;
+	ring_saturn.position.z = saturn.position.z;
+
+	ring_jupiter_main.position.x = jupiter.position.x;
+	ring_jupiter_main.position.z = jupiter.position.z;
+
+	ring_jupiter_additional.position.x = jupiter.position.x;
+	ring_jupiter_additional.position.z = jupiter.position.z;
+
+	ring_jupiter_additional_sub.position.x = jupiter.position.x;
+	ring_jupiter_additional_sub.position.z = jupiter.position.z;
+
+	//Movement of the planets
 
 	earth.position.x = Math.sin(t*0.1)*7500;
 	earth.position.z = Math.cos(t*0.1)*7500;
@@ -428,17 +520,14 @@ function animate() {
 	venus.position.x = Math.sin(t*0.2)*4500;
 	venus.position.z = Math.cos(t*0.2)*4500;
 
-	mars.position.x = Math.sin(t*0.1)*9000;
-	mars.position.z = Math.cos(t*0.1)*9000;
+	mars.position.x = Math.sin(t*0.07)*9000;
+	mars.position.z = Math.cos(t*0.07)*9000;
 
-	jupiter.position.x = Math.sin(t*0.06)*11000;
-	jupiter.position.z = Math.cos(t*0.06)*11000;
+	jupiter.position.x = Math.sin(t*0.04)*11000;
+	jupiter.position.z = Math.cos(t*0.04)*11000;
 
 	saturn.position.x = Math.sin(t*0.03)*13500;
 	saturn.position.z = Math.cos(t*0.03)*13500;
-
-	ring_saturn.position.x = saturn.position.x;
-	ring_saturn.position.z = saturn.position.z;
 
 	uranus.position.x = Math.sin(t*0.06)*15000;
 	uranus.position.z = Math.cos(t*0.06)*15000;
@@ -449,11 +538,17 @@ function animate() {
 	pluto.position.x = Math.sin(t*0.01)*20000;
 	pluto.position.z = Math.cos(t*0.01)*20000;
 
+	//Camera settings
 
-	camera.position.y = y * 7;
+	camera.position.y = y * 14;
+	camera.position.x = x * 21;
+	//camera.position.z = z;
 	camera.lookAt(scene.position);
 
 	t += Math.PI/180*7;
 
 	render.render(scene, camera);
 }
+
+
+animate();
