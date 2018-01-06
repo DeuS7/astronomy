@@ -2,6 +2,54 @@ var scene, camera, render, container, light, ambient;
 var W,H;
 var isInfoShown = false;
 
+var planetSettings = {
+	mercury: {
+		orbit: 3000,
+		rotation: 0.1,
+		speedFactor: 0.05
+	},
+	venus: {
+		orbit: 4500,
+		rotation: 0.1,
+		speedFactor: 0.2
+	},
+	earth: {
+		orbit: 7500,
+		rotation: 0.1,
+		speedFactor: 0.1
+	},
+	mars: {
+		orbit: 9000,
+		rotation: 0.1,
+		speedFactor: 0.07
+	},
+	jupiter: {
+		orbit: 11000,
+		rotation: 0.1,
+		speedFactor: 0.04
+	},
+	saturn: {
+		orbit: 13500,
+		rotation: 0.1,
+		speedFactor: 0.03
+	},
+	uranus: {
+		orbit: 15000,
+		rotation: 0.1,
+		speedFactor: 0.06
+	},
+	neptune: {
+		orbit: 17000,
+		rotation: 0.1,
+		speedFactor: 0.08
+	},
+	pluto: {
+		orbit: 20000,
+		rotation: 0.1,
+		speedFactor: 0.01
+	}
+}
+
 W = parseInt(document.body.clientWidth);
 H = parseInt(window.innerHeight);
 
@@ -478,19 +526,19 @@ function animate() {
 
 	//rotation
 	sun.rotation.y += 0.005;
-	earth.rotation.y += 0.1;
-	mercury.rotation.y += 0.1;
-	venus.rotation.y += 0.1;
-	mars.rotation.y += 0.1;
-	jupiter.rotation.y += 0.1;
-	saturn.rotation.y += 0.1;
-	ring_saturn.rotation.y += 0.001;
-	ring_jupiter_main.rotation.y += 0.1;
-	ring_jupiter_additional.rotation.y += 0.1;
-	ring_jupiter_additional_sub.rotation.y += 0.1;
-	uranus.rotation.y += 0.1;
-	neptune.rotation.y += 0.1;
-	pluto.rotation.y += 0.1;
+	earth.rotation.y += planetSettings.earth.rotation;
+	mercury.rotation.y += planetSettings.mercury.rotation;
+	venus.rotation.y += planetSettings.venus.rotation;
+	mars.rotation.y += planetSettings.mars.rotation;
+	jupiter.rotation.y += planetSettings.jupiter.rotation;
+	saturn.rotation.y += planetSettings.saturn.rotation;
+	ring_saturn.rotation.y += planetSettings.saturn.rotation * 0.001;
+	ring_jupiter_main.rotation.y += planetSettings.saturn.rotation;
+	ring_jupiter_additional.rotation.y += planetSettings.saturn.rotation;
+	ring_jupiter_additional_sub.rotation.y += planetSettings.saturn.rotation;
+	uranus.rotation.y += planetSettings.uranus.rotation;
+	neptune.rotation.y += planetSettings.neptune.rotation;
+	pluto.rotation.y += planetSettings.pluto.rotation;
 
 	//rings
 
@@ -508,32 +556,32 @@ function animate() {
 
 	//Movement of the planets
 
-	earth.position.x = Math.sin(t*0.1)*7500;
-	earth.position.z = Math.cos(t*0.1)*7500;
+	earth.position.x = Math.sin(t*planetSettings.earth.speedFactor)*planetSettings.earth.orbit;
+	earth.position.z = Math.cos(t*planetSettings.earth.speedFactor)*planetSettings.earth.orbit;
 
-	mercury.position.x = Math.sin(t*0.05)*3000;
-	mercury.position.z = Math.cos(t*0.05)*3000;
+	mercury.position.x = Math.sin(t*planetSettings.mercury.speedFactor)*planetSettings.mercury.orbit;
+	mercury.position.z = Math.cos(t*planetSettings.mercury.speedFactor)*planetSettings.mercury.orbit;
 
-	venus.position.x = Math.sin(t*0.2)*4500;
-	venus.position.z = Math.cos(t*0.2)*4500;
+	venus.position.x = Math.sin(t*planetSettings.venus.speedFactor)*planetSettings.venus.orbit;
+	venus.position.z = Math.cos(t*planetSettings.venus.speedFactor)*planetSettings.venus.orbit;
 
-	mars.position.x = Math.sin(t*0.07)*9000;
-	mars.position.z = Math.cos(t*0.07)*9000;
+	mars.position.x = Math.sin(t*planetSettings.mars.speedFactor)*planetSettings.mars.orbit;
+	mars.position.z = Math.cos(t*planetSettings.mars.speedFactor)*planetSettings.mars.orbit;
 
-	jupiter.position.x = Math.sin(t*0.04)*11000;
-	jupiter.position.z = Math.cos(t*0.04)*11000;
+	jupiter.position.x = Math.sin(t*planetSettings.jupiter.speedFactor)*planetSettings.jupiter.orbit;
+	jupiter.position.z = Math.cos(t*planetSettings.jupiter.speedFactor)*planetSettings.jupiter.orbit;
 
-	saturn.position.x = Math.sin(t*0.03)*13500;
-	saturn.position.z = Math.cos(t*0.03)*13500;
+	saturn.position.x = Math.sin(t*planetSettings.saturn.speedFactor)*planetSettings.saturn.orbit;
+	saturn.position.z = Math.cos(t*planetSettings.saturn.speedFactor)*planetSettings.saturn.orbit;
 
-	uranus.position.x = Math.sin(t*0.06)*15000;
-	uranus.position.z = Math.cos(t*0.06)*15000;
+	uranus.position.x = Math.sin(t*planetSettings.uranus.speedFactor)*planetSettings.uranus.orbit;
+	uranus.position.z = Math.cos(t*planetSettings.uranus.speedFactor)*planetSettings.uranus.orbit;
 
-	neptune.position.x = Math.sin(t*0.08)*17000;
-	neptune.position.z = Math.cos(t*0.08)*17000;
+	neptune.position.x = Math.sin(t*planetSettings.neptune.speedFactor)*planetSettings.neptune.orbit;
+	neptune.position.z = Math.cos(t*planetSettings.neptune.speedFactor)*planetSettings.neptune.orbit;
 
-	pluto.position.x = Math.sin(t*0.01)*20000;
-	pluto.position.z = Math.cos(t*0.01)*20000;
+	pluto.position.x = Math.sin(t*planetSettings.pluto.speedFactor)*planetSettings.pluto.orbit;
+	pluto.position.z = Math.cos(t*planetSettings.pluto.speedFactor)*planetSettings.pluto.orbit;
 
 	//Camera settings
 

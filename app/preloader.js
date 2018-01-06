@@ -1,7 +1,7 @@
 /*function hidePreloader() {
 	setTimeout(function() {
 		preloader.classList.add("done");
-	}, 3000);
+	}, 4000);
 };
 
 var currentPercentage = 0,
@@ -21,10 +21,10 @@ setTimeout(function initPerc() {
 	}
 	dispPerc.innerHTML = currentPercentage + "%";
 	if (currentPercentage <= 99) {
-		var pause = generateRandomNumber(15, 100);
+		var pause = generateRandomNumber(25, 100);
 		setTimeout(initPerc, pause);
 	}
-}, 15);
+}, 100);
 
 setTimeout(hidePreloader, 1000);*/
 "use strict";

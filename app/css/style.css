@@ -100,7 +100,7 @@ body {
   top: 0;
   width: 100%;
   height: 100vh;
-  background: black;
+  background: rgba(0, 0, 0, 0.9);
   z-index: 50;
   transition: .5s;
   text-align: center;
@@ -148,28 +148,28 @@ body {
   flex-wrap: wrap; }
 
 .mainMenuItem:nth-child(1) {
-  background: url(../images/jupiterIm.jpg) no-repeat center; }
+  background: url(../images/mercuryIm.jpg) no-repeat center; }
 
 .mainMenuItem:nth-child(2) {
-  background: url(../images/jupiterIm.jpg) no-repeat center; }
+  background: url(../images/venusIm.jpg) no-repeat center; }
 
 .mainMenuItem:nth-child(3) {
-  background: url(../images/jupiterIm.jpg) no-repeat center; }
+  background: url(../images/earthIm.jpg) no-repeat center; }
 
 .mainMenuItem:nth-child(4) {
-  background: url(../images/jupiterIm.jpg) no-repeat center; }
+  background: url(../images/marsIm.jpg) no-repeat center; }
 
 .mainMenuItem:nth-child(5) {
   background: url(../images/jupiterIm.jpg) no-repeat center; }
 
 .mainMenuItem:nth-child(6) {
-  background: url(../images/jupiterIm.jpg) no-repeat center; }
+  background: url(../images/saturnIm.jpg) no-repeat center; }
 
 .mainMenuItem:nth-child(7) {
-  background: url(../images/jupiterIm.jpg) no-repeat center; }
+  background: url(../images/uranusIm.jpg) no-repeat center; }
 
 .mainMenuItem:nth-child(8) {
-  background: url(../images/jupiterIm.jpg) no-repeat center; }
+  background: url(../images/neptuneIm.jpg) no-repeat center; }
 
 #upButton, #downButton {
   position: absolute;
@@ -187,3 +187,12 @@ body {
 
 .inactiveElement {
   opacity: .5; }
+
+#showSystem {
+  position: fixed;
+  left: 15px;
+  bottom: 15px;
+  border: 1px solid red;
+  width: 25px;
+  height: 25px;
+  cursor: pointer; }

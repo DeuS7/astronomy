@@ -9,7 +9,7 @@ var amountOfMenuPages = document.getElementsByClassName("mainMenuInner").length,
     currentPage = 0;
 
 navicon.onclick = function () {
-	mainMenu.classList.toggle("opened");
+	toggleMenu();
 };
 
 upButton.onclick = function () {
@@ -38,24 +38,41 @@ function openMenuPage(page) {
 	firstMenuEl.style.marginTop = -currentPage * 100 + "vh";
 }
 
+function toggleMenu() {
+	mainMenu.classList.toggle("opened");
+}
+
 //Open planet
 
 var planets = document.getElementsByClassName("mainMenuItemPlanet");
 
-for (var i = 0; i < planets.length; i++) {
+var _loop = function _loop(i) {
 	planets[i].onclick = function () {
-		showPlanet();
+		var list = planets[i].classList;
+		var planet = list[list.length - 1];
+		showPlanet(planet);
+		toggleMenu();
 	};
+};
+
+for (var i = 0; i < planets.length; i++) {
+	_loop(i);
 }
 
 function showPlanet(planet) {
 	isInfoShown = true;
-	camera.position.x = Math.sin((t - Math.PI / 180 * 450) * 0.04) * 11000;
-	camera.position.z = Math.cos((t - Math.PI / 180 * 450) * 0.04) * 11000;
+	camera.position.x = Math.sin((t - Math.PI / 180 * 200) * planetSettings[planet].speedFactor) * planetSettings[planet].orbit;
+	camera.position.z = Math.cos((t - Math.PI / 180 * 200) * planetSettings[planet].speedFactor) * planetSettings[planet].orbit;
 	camera.position.y = sun.position.y + 200;
-	camera.lookAt(jupiter.position);
+	camera.lookAt(window[planet].position);
 }
 function showSystem() {
 	isInfoShown = false;
 	camera.position.z = 20000;
 }
+
+//cancelBubbling on Menu
+
+mainMenu.addEventListener('mousemove', function (e) {
+	e.stopPropagation();
+});
