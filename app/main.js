@@ -7,48 +7,48 @@ var isInfoShown = false;
 var planetSettings = {
 	mercury: {
 		orbit: 3000,
-		rotation: 0.1,
-		speedFactor: 0.05
+		rotation: 0.0008,
+		speedFactor: 0.195
 	},
 	venus: {
 		orbit: 4500,
-		rotation: 0.1,
-		speedFactor: 0.2
+		rotation: -0.00023,
+		speedFactor: 0.12
 	},
 	earth: {
 		orbit: 7500,
-		rotation: 0.1,
+		rotation: 0.05,
 		speedFactor: 0.1
 	},
 	mars: {
 		orbit: 9000,
-		rotation: 0.1,
-		speedFactor: 0.07
+		rotation: 0.05,
+		speedFactor: 0.08
 	},
 	jupiter: {
 		orbit: 11000,
-		rotation: 0.1,
-		speedFactor: 0.04
+		rotation: 0.12,
+		speedFactor: 0.043
 	},
 	saturn: {
 		orbit: 13500,
-		rotation: 0.1,
-		speedFactor: 0.03
+		rotation: 0.13,
+		speedFactor: 0.032
 	},
 	uranus: {
 		orbit: 15000,
-		rotation: 0.1,
-		speedFactor: 0.06
+		rotation: -0.14,
+		speedFactor: 0.023
 	},
 	neptune: {
 		orbit: 17000,
-		rotation: 0.1,
-		speedFactor: 0.08
+		rotation: 0.075,
+		speedFactor: 0.019
 	},
 	pluto: {
 		orbit: 20000,
-		rotation: 0.1,
-		speedFactor: 0.01
+		rotation: 0.008,
+		speedFactor: 0.015
 	}
 };
 
@@ -129,8 +129,8 @@ var earth_orbit_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * 7500;
-	vertex.z = Math.cos(Math.PI / 180 * i) * 7500;
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.earth.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.earth.orbit;
 	orbit_earth_geom.vertices.push(vertex);
 }
 
@@ -164,8 +164,8 @@ var mercury_orbit_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * 3000;
-	vertex.z = Math.cos(Math.PI / 180 * i) * 3000;
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.mercury.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.mercury.orbit;
 	orbit_mercury_geom.vertices.push(vertex);
 }
 
@@ -199,8 +199,8 @@ var vanus_orbit_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * 4500;
-	vertex.z = Math.cos(Math.PI / 180 * i) * 4500;
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.venus.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.venus.orbit;
 	orbit_vanus_geom.vertices.push(vertex);
 }
 
@@ -234,8 +234,8 @@ var mars_orbit_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * 9000;
-	vertex.z = Math.cos(Math.PI / 180 * i) * 9000;
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.mars.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.mars.orbit;
 	orbit_mars_geom.vertices.push(vertex);
 }
 
@@ -332,8 +332,8 @@ scene.add(ring_jupiter_additional_sub);
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * 11000;
-	vertex.z = Math.cos(Math.PI / 180 * i) * 11000;
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.jupiter.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.jupiter.orbit;
 	orbit_jupiter_geom.vertices.push(vertex);
 }
 
@@ -389,8 +389,8 @@ var saturn_orbit_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * 13500;
-	vertex.z = Math.cos(Math.PI / 180 * i) * 13500;
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.saturn.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.saturn.orbit;
 	orbit_saturn_geom.vertices.push(vertex);
 }
 
@@ -424,8 +424,8 @@ var uranus_orbit_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * 15000;
-	vertex.z = Math.cos(Math.PI / 180 * i) * 15000;
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.uranus.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.uranus.orbit;
 	orbit_uranus_geom.vertices.push(vertex);
 }
 
@@ -459,8 +459,8 @@ var neptune_orbit_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * 17000;
-	vertex.z = Math.cos(Math.PI / 180 * i) * 17000;
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.neptune.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.neptune.orbit;
 	orbit_neptune_geom.vertices.push(vertex);
 }
 
@@ -494,8 +494,8 @@ var pluto_orbit_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * 20000;
-	vertex.z = Math.cos(Math.PI / 180 * i) * 20000;
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.pluto.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.pluto.orbit;
 	orbit_pluto_geom.vertices.push(vertex);
 }
 

@@ -98,7 +98,6 @@ function hideReturnButton() {
 
 window.addEventListener("keydown", function (e) {
 	if (e.keyCode == 27) {
-
 		mainMenu.classList.add("opened");
 	}
 }, true);
