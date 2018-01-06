@@ -193,6 +193,12 @@ body {
   left: 15px;
   bottom: 15px;
   border: 1px solid red;
-  width: 25px;
+  display: inline-block;
   height: 25px;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
   cursor: pointer; }
+
+.hidden {
+  display: none !important; }

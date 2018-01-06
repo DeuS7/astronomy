@@ -156,16 +156,23 @@ body {
 #upButton {
 	top: 5vh;
 }
- .inactiveElement {
- 	opacity: .5;
- }
+.inactiveElement {
+	opacity: .5;
+}
 
- #showSystem {
- 	position: fixed;
- 	left: 15px;
- 	bottom: 15px;
- 	border: 1px solid red;
- 	width: 25px;
- 	height: 25px;
- 	cursor: pointer;
- }
+#showSystem {
+	position: fixed;
+	left: 15px;
+	bottom: 15px;
+	border: 1px solid red;
+	display: inline-block;
+	height: 25px;
+	cursor: pointer;
+	font-size: 20px;
+	color: white;
+	cursor: pointer;
+}
+
+.hidden {
+	display: none !important;
+}

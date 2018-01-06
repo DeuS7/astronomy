@@ -364,7 +364,7 @@ scene.add(saturn);
 
 var ring_saturn_geom = new THREE.Geometry();
 var ring_saturn_mat = new THREE.PointCloudMaterial({
-	color: "#421d00",
+	color: "#ffffff",
 	opacity: 1,
 	size: 1,
 	sizeAttenuation: false
