@@ -2,6 +2,7 @@
 
 var scene, camera, render, container, light, ambient;
 var W, H;
+var isInfoShown = false;
 
 W = parseInt(document.body.clientWidth);
 H = parseInt(window.innerHeight);
@@ -532,11 +533,14 @@ function animate() {
 
 	//Camera settings
 
-	camera.position.y = y * 14;
-	camera.position.x = x * 21;
-	camera.lookAt(scene.position);
 
-	t += Math.PI / 180 * 7;
+	if (!isInfoShown) {
+		camera.position.y = y * 14;
+		camera.position.x = x * 21;
+		camera.lookAt(scene.position);
+
+		t += Math.PI / 180 * 7;
+	}
 
 	render.render(scene, camera);
 }

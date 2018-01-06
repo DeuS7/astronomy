@@ -184,3 +184,6 @@ body {
 
 #upButton {
   top: 5vh; }
+
+.inactiveElement {
+  opacity: .5; }
