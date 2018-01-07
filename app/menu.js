@@ -135,3 +135,9 @@ function hideInfo() {
 		items[i].style.zIndex = 10;
 	}
 }
+
+//close by clicking on the canvas
+
+document.getElementsByTagName("canvas")[0].onclick = function () {
+	showSystem();
+};

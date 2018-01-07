@@ -1,269 +1,327 @@
-@import "vars.scss";
+@import 'vars.scss';
 
 body {
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
 }
 
 #preloader {
-	overflow: hidden;
-	background: #110F11;
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	z-index: 999;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
-	transition: 1s all;
-	opacity: 1;
-	#loader {
-		position: relative;
-		#percentage {
-			font-size: 80px;
-			color: white;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-		}
-	}
-	&.done {
-		opacity: 0;
-		visibility: hidden;
-	}
+    display: flex;
+    overflow: hidden;
+
+    transition: 1s all;
+
+    opacity: 1;
+    background: #110f11;
+
+    align-items: center;
+    justify-content: center;
+    #loader {
+        position: relative;
+        #percentage {
+            font-size: 80px;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            color: white;
+        }
+    }
+    &.done {
+        visibility: hidden;
+
+        opacity: 0;
+    }
 }
 
 #hiddenImages {
-	display: none;
+    display: none;
 }
 
 #navicon {
-	position: fixed;
-	top: 15px;
-	left: 15px;
-	color: white;
-	font-size: 30px;
-	cursor: pointer;
-	user-select: none;
-	z-index: 100;
+    font-size: 30px;
+
+    position: fixed;
+    z-index: 100;
+    top: 15px;
+    left: 15px;
+
+    cursor: pointer;
+    user-select: none;
+
+    color: white;
 }
 
 #mainMenu {
-	position: relative;
-	position: fixed;
-	left: -100%;
-	top: 0;
-	width: 100%;
-	height: 100vh;
-	background: rgba(0,0,0,.9);
-	z-index: 50;
-	transition: .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	text-align: center;
-	overflow: hidden;
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    left: -100%;
 
-	&.opened {
-		left: 0;
-	}
-	.mainMenuItem {
-		border: 1px solid red;
-		width: 21%;
-		height: 40vh;
-		position: relative;
-		cursor: pointer;
-		background-size: 100% auto;
-		transition: .3s cubic-bezier(.53,1.83,.99,.93);
-		&:hover {
-			background-size: 120% auto;
-		}
-		.mainMenuItemWrapper {
-			position: absolute;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			background: hsla(0,0,100%, .2);
-			transition: .3s;
-			&:hover {
-				background: hsla(0,0,100%, 0);
-			}
-		}
-		.mainMenuItemTitle {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 30px;
-			font-size: 25px;
-			color: white;
-		}
-	}
+    overflow: hidden;
+
+    width: 100%;
+    height: 100vh;
+
+    transition: .5s cubic-bezier(.175, .885, .32, 1.275);
+    text-align: center;
+
+    background: rgba(0,0,0,.9);
+
+    &.opened {
+        left: 0;
+    }
+    .mainMenuItem {
+        position: relative;
+
+        width: 21%;
+        height: 40vh;
+
+        cursor: pointer;
+        transition: .3s cubic-bezier(.53,1.83,.99,.93);
+
+        border: 1px solid red;
+        background-size: 100% auto;
+        &:hover {
+            background-size: 120% auto;
+        }
+        .mainMenuItemWrapper {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            transition: .3s;
+
+            background: hsla(0,0,100%, .2);
+            &:hover {
+                background: hsla(0,0,100%, 0);
+            }
+        }
+        .mainMenuItemTitle {
+            font-size: 25px;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 30px;
+
+            color: white;
+        }
+    }
+}
+#mainMenu:before {
+    content: '';
 }
 .mainMenuInner {
-	border: 1px solid red;
-	width: 80%;
-	height: 100vh;
-	margin-left: 10%;
-	transition: 1s;
+    display: flex;
 
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	flex-wrap: wrap;
+    width: 80%;
+    height: 100vh;
+    margin-left: 10%;
+
+    transition: 1s;
+
+    border: 1px solid red;
+
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .mainMenuItem:nth-child(1) {
-	background: url(../images/mercuryIm.jpg) no-repeat center;
+    background: url(../images/mercuryIm.jpg) no-repeat center;
 }
 .mainMenuItem:nth-child(2) {
-	background: url(../images/venusIm.jpg) no-repeat center;
+    background: url(../images/venusIm.jpg) no-repeat center;
 }
 .mainMenuItem:nth-child(3) {
-	background: url(../images/earthIm.jpg) no-repeat center;
+    background: url(../images/earthIm.jpg) no-repeat center;
 }
 .mainMenuItem:nth-child(4) {
-	background: url(../images/marsIm.jpg) no-repeat center;
+    background: url(../images/marsIm.jpg) no-repeat center;
 }
 .mainMenuItem:nth-child(5) {
-	background: url(../images/jupiterIm.jpg) no-repeat center;
+    background: url(../images/jupiterIm.jpg) no-repeat center;
 }
 .mainMenuItem:nth-child(6) {
-	background: url(../images/saturnIm.jpg) no-repeat center;
+    background: url(../images/saturnIm.jpg) no-repeat center;
 }
 .mainMenuItem:nth-child(7) {
-	background: url(../images/uranusIm.jpg) no-repeat center;
+    background: url(../images/uranusIm.jpg) no-repeat center;
 }
 .mainMenuItem:nth-child(8) {
-	background: url(../images/neptuneIm.jpg) no-repeat center;
+    background: url(../images/neptuneIm.jpg) no-repeat center;
 }
 
-#upButton, #downButton {
-	position: absolute;
-	width: 8%;
-	height: 60px;
-	background: red;
-	right: 10px;
-	cursor: pointer;
+#upButton,
+#downButton {
+    position: absolute;
+    right: 10px;
+
+    width: 8%;
+    height: 60px;
+
+    cursor: pointer;
+
+    background: red;
 }
 
 #downButton {
-	bottom: 5vh;
+    bottom: 5vh;
 }
 #upButton {
-	top: 5vh;
+    top: 5vh;
 }
 .inactiveElement {
-	opacity: .5;
+    opacity: .5;
 }
 
 #showSystem {
-	position: fixed;
-	left: 15px;
-	bottom: 15px;
-	display: inline-block;
-	height: 25px;
-	cursor: pointer;
-	font-size: 20px;
-	color: white;
-	cursor: pointer;
+    font-size: 20px;
+
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+
+    display: inline-block;
+
+    height: 25px;
+
+    cursor: pointer;
+    cursor: pointer;
+
+    color: white;
 }
 
 .hidden {
-	display: none !important;
+    display: none !important;
 }
 
 //info
 
 #showInfo {
-	position: fixed;
-	right: -100%;
-	top: 0;
-	border: 1px solid red;
-	width: 50%;
-	height: 100vh;
-	text-align: center;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	transition: 0.5s;
-	#showInfoInner {
-		width: 100%;
-		height: 100%;
-		position: relative;
-	}
+    position: fixed;
+    top: 0;
+    right: -100%;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    width: 50%;
+    height: 100vh;
+
+    transition: .5s;
+    text-align: center;
+
+    border: 1px solid red;
+    #showInfoInner {
+        position: relative;
+
+        width: 100%;
+        height: 100%;
+    }
 }
 .showInfoItem {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	opacity: 0;
-	transition: 1.5s;
-	z-index: 10;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    transition: 1.5s;
+
+    opacity: 0;
+    background: rgba(0,0,0,.5);
 }
 h2.showInfoTitle {
-	color: white;
-	font-size: 25px;
-	margin: 25px 0;
-	font-weight: bold;
+    font-size: 25px;
+    font-weight: bold;
+
+    margin: 25px 0;
+
+    color: white;
 }
 h3.showInfoTitle {
-	color: white;
-	font-size: 18px;
-	font-weight: bold;
-	margin: 25px 0;
+    font-size: 18px;
+    font-weight: bold;
+
+    margin: 25px 0;
+
+    color: white;
 }
 
 .planetInfoTable {
-	width: 50%;
-	border-collapse: collapse;
-	td {
-		color: white;
-		font-size: 20px;
-		border: 1px solid red;
-		padding: 10px 0;
-	}
+    width: 50%;
+
+    border-collapse: collapse;
+    td {
+        font-size: 20px;
+
+        padding: 10px 0;
+
+        color: white;
+        border: 1px solid red;
+    }
 }
 .planetInfoP {
-	width: 100%;
-	background: hsla(0,0,100,.2);
-	min-height: 100px;
-	border-radius: 35px;
-	padding: 10px;
-	font-size: 20px;
-	color: #fdfdfd;
-	margin-top: 15px;
-	text-align: left;
-	line-height: 1.5;
+    font-size: 20px;
+    line-height: 1.5;
+
+    width: 100%;
+    min-height: 100px;
+    margin-top: 15px;
+    padding: 10px;
+
+    text-align: left;
+
+    color: #fdfdfd;
+    border-radius: 35px;
+    background: hsla(0,0,100,.2);
 }
 .planetInfoImg {
-	margin-top: 15px;
-	img {
-		width: 100%;
-	}
+    margin-top: 15px;
+    img {
+        width: 100%;
+    }
 }
 .peppermint {
-	margin-top: 15px;
-	position: relative;
-	img {
-		width: 100%;
-	}
+    position: relative;
+
+    margin-top: 15px;
+    img {
+        width: 100%;
+    }
 }
 .videoWrapper {
-	position: relative;
-	padding-bottom: 56.25%; 
-	padding-top: 25px;
-	height: 0;
-	margin-top: 15px;
+    position: relative;
+
+    height: 0;
+    margin-top: 15px;
+    padding-top: 25px;
+    padding-bottom: 56.25%;
 }
 .videoWrapper iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
 }
