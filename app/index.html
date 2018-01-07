@@ -5,17 +5,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Document</title>
 	<link rel="stylesheet" href="libs/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="libs/pepperMint/peppermint.suggested.css">
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/media.css">
 </head>
 <body>
-	<div id="preloader">
+	<!-- <div id="preloader">
 		<div id="loader">
 			<img src="images/preloader.gif" alt="">
 			<span id="percentage">0%</span>
 		</div>
-	</div>
+	</div> -->
 	<div id="navicon"><i class="fa fa-navicon"></i></div>
 	<div id="mainMenu" class="clearfix">
 		<div id="upButton" class="inactiveElement"></div>
@@ -62,12 +63,112 @@
 		</div>
 	</div>
 	<div id="showSystem" class="hidden"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Назад</div>
+
+	<div id="showInfo" class="movedRight">
+		<div id="showInfoInner">
+			<div class="showInfoItem" id="jupiter">
+				<h2 class="showInfoTitle">Юпитер</h2>
+				<table class="planetInfoTable">
+					<tr>
+						<td>Радиус:</td>
+						<td>4500</td>
+					</tr>
+					<tr>
+						<td>Радиус:</td>
+						<td>4500</td>
+					</tr>
+					<tr>
+						<td>Радиус:</td>
+						<td>4500</td>
+					</tr>
+					<tr>
+						<td>Радиус:</td>
+						<td>4500</td>
+					</tr>
+					<tr>
+						<td>Радиус:</td>
+						<td>4500</td>
+					</tr>
+					<tr>
+						<td>Радиус:</td>
+						<td>4500</td>
+					</tr>
+				</table>
+				<h3 class="showInfoTitle">Общая информация</h3>
+				<div class="planetInfoP">
+					<p>Юпи́тер — пятая планета от Солнца, крупнейшая в Солнечной системе. Наряду с Сатурном, Ураном и Нептуном Юпитер классифицируется как газовый гигант.
+
+					Планета была известна людям с глубокой древности, что нашло своё отражение в мифологии и религиозных верованиях различных культур: месопотамской, вавилонской, греческой и других. Современное название Юпитера происходит от имени древнеримского верховного бога-громовержца.</p>
+				</div>
+				<h3 class="showInfoTitle">Галерея</h3>
+				<div class="peppermint">
+					<img src="images/jupiterAlbum.jpg" alt="">
+					<img src="images/jupiterAlbum.jpg" alt="">
+				</div>
+				<h3 class="showInfoTitle">Документальный фильм</h3>
+				<div class="videoWrapper">
+					<iframe  src="https://www.youtube.com/embed/jI0kLO9cBJU" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+				</div>
+			</div>
+			<div class="showInfoItem" id="earth">
+				<h2 class="showInfoTitle">Земля</h2>
+				<table class="planetInfoTable">
+					<tr>
+						<td>Радиус:</td>
+						<td>6221</td>
+					</tr>
+					<tr>
+						<td>Радиус:</td>
+						<td>6221</td>
+					</tr>
+					<tr>
+						<td>Радиус:</td>
+						<td>6221</td>
+					</tr>
+					<tr>
+						<td>Радиус:</td>
+						<td>6221</td>
+					</tr>
+					<tr>
+						<td>Радиус:</td>
+						<td>6221</td>
+					</tr>
+					<tr>
+						<td>Радиус:</td>
+						<td>6221</td>
+					</tr>
+				</table>
+				<h3 class="showInfoTitle">Общая информация</h3>
+				<div class="planetInfoP">
+					<p>Юпи́тер — пятая планета от Солнца, крупнейшая в Солнечной системе. Наряду с Сатурном, Ураном и Нептуном Юпитер классифицируется как газовый гигант.
+
+					Планета была известна людям с глубокой древности, что нашло своё отражение в мифологии и религиозных верованиях различных культур: месопотамской, вавилонской, греческой и других. Современное название Юпитера происходит от имени древнеримского верховного бога-громовержца.</p>
+				</div>
+				<h3 class="showInfoTitle">Галерея</h3>
+				<div class="peppermint">
+					<div>
+						<img src="images/jupiterAlbum.jpg" alt="">
+					</div>
+					<div>
+						<img src="images/jupiterAlbum.jpg" alt="">
+					</div>
+				</div>
+				<h3 class="showInfoTitle">Документальный фильм</h3>
+				<div class="videoWrapper">
+					<iframe  src="https://www.youtube.com/embed/jI0kLO9cBJU" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src="libs/jquery-3.2.1.min.js"></script>
+	<script src="libs/pepperMint/peppermint.min.js"></script>
+	<script src="libs/pepperMint/pepperSettings.js"></script>
 	<!-- MainScript -->
 	<script src="libs/three.min.js"></script>
 	<script src="libs/CanvasRenderer.js"></script>
 	<script src="libs/Projector.js"></script>
 
+	<script src="showInfo.js"></script>
 	<script src="test.js"></script>
 	<script src="main.js"></script>
 	<script src="menu.js"></script>

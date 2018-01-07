@@ -5,7 +5,8 @@ var navicon = document.getElementById("navicon"),
     isMenuShown = false,
     upButton = document.getElementById("upButton"),
     downButton = document.getElementById("downButton"),
-    showSystemButton = document.getElementById("showSystem");
+    showSystemButton = document.getElementById("showSystem"),
+    showInfoBlock = document.getElementById("showInfo");
 var amountOfMenuPages = document.getElementsByClassName("mainMenuInner").length,
     currentPage = 0;
 
@@ -61,17 +62,20 @@ for (var i = 0; i < planets.length; i++) {
 }
 
 function showPlanet(planet) {
+	hideInfo();
 	isInfoShown = true;
 	camera.position.x = Math.sin((t - Math.PI / 180 * 200) * planetSettings[planet].speedFactor) * planetSettings[planet].orbit;
 	camera.position.z = Math.cos((t - Math.PI / 180 * 200) * planetSettings[planet].speedFactor) * planetSettings[planet].orbit;
 	camera.position.y = sun.position.y + 200;
 	camera.lookAt(window[planet].position);
 	showReturnButton();
+	showInfo(planet);
 }
 function showSystem() {
 	isInfoShown = false;
 	camera.position.z = 20000;
 	hideReturnButton();
+	hideInfo();
 }
 
 showSystemButton.onclick = showSystem;
@@ -85,6 +89,12 @@ navicon.addEventListener('mousemove', function (e) {
 	e.stopPropagation();
 });
 
+//cancelBubbling on showInfo
+
+document.getElementById("showInfo").addEventListener('mousemove', function (e) {
+	e.stopPropagation();
+});
+
 //toggle return button
 
 function showReturnButton() {
@@ -94,11 +104,11 @@ function hideReturnButton() {
 	document.getElementById("showSystem").classList.add("hidden");
 }
 
-//close menu throgh ESC
+//close menu with ESC
 
 window.addEventListener("keydown", function (e) {
 	if (e.keyCode == 27) {
-		mainMenu.classList.add("opened");
+		mainMenu.classList.toggle("opened");
 	}
 }, true);
 
@@ -111,3 +121,17 @@ mainMenu.addEventListener('mousewheel', function (e) {
 		openMenuPage(--currentPage);
 	}
 });
+
+function showInfo(planet) {
+	showInfoBlock.style.right = 0;
+	document.getElementById(planet).style.opacity = 1;
+	document.getElementById(planet).style.zIndex = 20;
+}
+function hideInfo() {
+	showInfoBlock.style.right = -100 + "%";
+	var items = document.getElementsByClassName("showInfoItem");
+	for (var i = 0; i < items.length; i++) {
+		items[i].style.opacity = 0;
+		items[i].style.zIndex = 10;
+	}
+}
