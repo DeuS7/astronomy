@@ -236,6 +236,7 @@ body {
   left: 0;
   transition: 1.5s;
   overflow-y: scroll;
+  overflow-x: hidden;
   opacity: 1;
   background: rgba(0, 0, 0, 0.5);
   z-index: 10; }
@@ -278,10 +279,10 @@ h3.showInfoTitle {
   .planetInfoImg img {
     width: 100%; }
 
-.peppermint {
+.peppermintGallery {
   position: relative;
   margin-top: 15px; }
-  .peppermint img {
+  .peppermintGallery img {
     width: 100%; }
 
 .videoWrapper {

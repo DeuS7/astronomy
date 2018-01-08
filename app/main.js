@@ -246,7 +246,7 @@ scene.add(mars_orbit);
 //jupiter
 
 var jupiter, jupiter_geom, jupiter_mat;
-jupiter_geom = new THREE.SphereGeometry(350, 20, 20);
+jupiter_geom = new THREE.SphereGeometry(350, 60, 60);
 
 var jupiter_texture = new THREE.TextureLoader().load('images/jupiter.jpg');
 jupiter_texture.anisotropy = 8;
