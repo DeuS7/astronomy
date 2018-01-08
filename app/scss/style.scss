@@ -227,8 +227,7 @@ body {
     top: 0;
     right: -100%;
 
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: hidden;
 
     width: 50%;
     height: 100vh;
@@ -253,9 +252,11 @@ body {
     left: 0;
 
     transition: 1.5s;
+    overflow-y: scroll;
 
-    opacity: 0;
+    opacity: 1;
     background: rgba(0,0,0,.5);
+    z-index: 10;
 }
 h2.showInfoTitle {
     font-size: 25px;
