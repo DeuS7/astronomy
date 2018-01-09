@@ -353,26 +353,15 @@ h3.showInfoTitle {
 .sunPresent:nth-child(3) {
 	background: url(../images/theSunAlbum2.jpg) no-repeat top left / cover;
 }
-/* 
-.swiper-button-prev,
-.swiper-button-next {
-	top: 0;
-	height: 100%;
-	width: 10%;
-	background-color: hsla(0,0,100, .2);
-	transition: .3s;
-	margin-top: 0;
+.plutoPresent:nth-child(1) {
+	background: url(../images/plutoAlbum.jpg) no-repeat top left / cover;
 }
-.swiper-button-prev {
-	left: 0;
+.plutoPresent:nth-child(2) {
+	background: url(../images/plutoAlbum1.jpg) no-repeat top left / cover;
 }
-.swiper-button-next {
-	right: 0;
+.plutoPresent:nth-child(3) {
+	background: url(../images/plutoAlbum2.jpg) no-repeat top left / cover;
 }
-.swiper-container:hover .swiper-button-prev,
-.swiper-container:hover .swiper-button-next {
-	background-color: hsla(0,0,100, .5);
-} */
 
 .swiper-pagination-bullet {
 	width: 12px;

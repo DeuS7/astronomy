@@ -1,20 +1,21 @@
-/*function hidePreloader() {
-	setTimeout(function() {
+"use strict";
+
+function hidePreloader() {
+	setTimeout(function () {
 		preloader.classList.add("done");
 	}, 4000);
 };
 
 var currentPercentage = 0,
-	dispPerc = document.getElementById("percentage"),
-	preloader = document.getElementById("preloader");
+    dispPerc = document.getElementById("percentage"),
+    preloader = document.getElementById("preloader");
 
 function generateRandomNumber(start, end) {
 	return Math.floor(Math.random() * end) + start;
 }
 
-
 setTimeout(function initPerc() {
-	var delta = generateRandomNumber(1,6);
+	var delta = generateRandomNumber(1, 6);
 	currentPercentage += delta;
 	if (currentPercentage > 100) {
 		currentPercentage = 100;
@@ -26,5 +27,4 @@ setTimeout(function initPerc() {
 	}
 }, 100);
 
-setTimeout(hidePreloader, 1000);*/
-"use strict";
+setTimeout(hidePreloader, 1000);

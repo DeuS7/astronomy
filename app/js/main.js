@@ -6,7 +6,8 @@ var planetSettings = {
 	mercury: {
 		orbit: 3000,
 		rotation: 0.0008,
-		speedFactor: 0.195
+		speedFactor: 0.195,
+		verticalOrbitFactor: 0.08
 	},
 	venus: {
 		orbit: 4500,
@@ -25,12 +26,13 @@ var planetSettings = {
 	},
 	jupiter: {
 		orbit: 11000,
-		rotation: 0.12,
+		//rotation: 0.12,
+		rotation: 0,
 		speedFactor: 0.043
 	},
 	saturn: {
 		orbit: 13500,
-		rotation: 0.13,
+		rotation: 0.06,
 		speedFactor: 0.032
 	},
 	uranus: {
@@ -44,9 +46,10 @@ var planetSettings = {
 		speedFactor: 0.019
 	},
 	pluto: {
-		orbit: 20000,
+		orbit: 17500,
 		rotation: 0.008,
-		speedFactor: 0.015
+		speedFactor: 0.015,
+		verticalOrbitFactor: 0.5 //
 	}
 }
 
@@ -166,6 +169,7 @@ for (var i = 0;i<10000;i++) {
 	var vertex = new THREE.Vector3();
 	vertex.x = Math.sin(Math.PI/180*i)*planetSettings.mercury.orbit;
 	vertex.z = Math.cos(Math.PI/180*i)*planetSettings.mercury.orbit;
+	vertex.y = Math.cos(Math.PI/180*i)*planetSettings.mercury.orbit*planetSettings.mercury.verticalOrbitFactor;
 	orbit_mercury_geom.vertices.push(vertex);
 }
 
@@ -348,7 +352,7 @@ scene.add(jupiter_orbit);
 //saturn
 
 var saturn, saturn_geom, saturn_mat;
-saturn_geom = new THREE.SphereGeometry(200,20,20);
+saturn_geom = new THREE.SphereGeometry(300,20,20);
 
 var saturn_texture = new THREE.TextureLoader().load('images/saturn.jpg');
 saturn_texture.anisotropy = 8;
@@ -370,11 +374,11 @@ var ring_saturn_mat = new THREE.PointCloudMaterial({
 	sizeAttenuation: false
 });
 
-for (var i = 0;i<7000;i++) {
+for (var i = 0;i<10000;i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI/180*i)*(550-i/40);
+	vertex.x = Math.sin(Math.PI/180*i)*(620-i/50);
 	vertex.y = Math.random()*20;
-	vertex.z = Math.cos(Math.PI/180*i)*(550-i/40);
+	vertex.z = Math.cos(Math.PI/180*i)*(620-i/50);
 	ring_saturn_geom.vertices.push(vertex);
 }
 
@@ -500,6 +504,7 @@ for (var i = 0;i<10000;i++) {
 	var vertex = new THREE.Vector3();
 	vertex.x = Math.sin(Math.PI/180*i)*planetSettings.pluto.orbit;
 	vertex.z = Math.cos(Math.PI/180*i)*planetSettings.pluto.orbit;
+	vertex.y = Math.sin(Math.PI/180*i)*planetSettings.pluto.orbit*planetSettings.pluto.verticalOrbitFactor; //0.4 to reduce the angle. Number can be various.
 	orbit_pluto_geom.vertices.push(vertex);
 }
 
@@ -532,7 +537,7 @@ function animate() {
 	mars.rotation.y += planetSettings.mars.rotation;
 	jupiter.rotation.y += planetSettings.jupiter.rotation;
 	saturn.rotation.y += planetSettings.saturn.rotation;
-	ring_saturn.rotation.y += planetSettings.saturn.rotation * 0.001;
+	ring_saturn.rotation.y += planetSettings.saturn.rotation;
 	ring_jupiter_main.rotation.y += planetSettings.saturn.rotation;
 	ring_jupiter_additional.rotation.y += planetSettings.saturn.rotation;
 	ring_jupiter_additional_sub.rotation.y += planetSettings.saturn.rotation;
@@ -561,6 +566,7 @@ function animate() {
 
 	mercury.position.x = Math.sin(t*planetSettings.mercury.speedFactor)*planetSettings.mercury.orbit;
 	mercury.position.z = Math.cos(t*planetSettings.mercury.speedFactor)*planetSettings.mercury.orbit;
+	mercury.position.y = Math.sin(t*planetSettings.mercury.speedFactor)*planetSettings.mercury.orbit*planetSettings.mercury.verticalOrbitFactor;
 
 	venus.position.x = Math.sin(t*planetSettings.venus.speedFactor)*planetSettings.venus.orbit;
 	venus.position.z = Math.cos(t*planetSettings.venus.speedFactor)*planetSettings.venus.orbit;
@@ -582,6 +588,7 @@ function animate() {
 
 	pluto.position.x = Math.sin(t*planetSettings.pluto.speedFactor)*planetSettings.pluto.orbit;
 	pluto.position.z = Math.cos(t*planetSettings.pluto.speedFactor)*planetSettings.pluto.orbit;
+	pluto.position.y = Math.sin(t*planetSettings.pluto.speedFactor)*planetSettings.pluto.orbit*planetSettings.pluto.verticalOrbitFactor;
 
 	//Camera settings
 
