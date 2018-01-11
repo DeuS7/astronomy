@@ -2,55 +2,64 @@ var scene, camera, render, container, light, ambient;
 var W,H;
 var isInfoShown = false;
 
-var rotationFactor = 2*Math.PI*7/360; //To make planet looa at the sun while rotation.
+var rotationFactor = 2*Math.PI*7/360; //To make planet look at the sun while rotation. Deprecated.
 
 var planetSettings = {
 	mercury: {
 		orbit: 3000,
 		rotation: 0.0008,
 		speedFactor: 0.195,
-		verticalOrbitFactor: 0.08
+		verticalOrbitFactor: 0.08, //Some planets are not in the common plane. e.g. 7 deg / 90 deg ~ 0.08
+		zoomFactor: 2
 	},
 	venus: {
 		orbit: 4500,
 		rotation: -0.00023, //Zusammen mit Uranus in entgegengesetzer Ordnung
-		speedFactor: 0.12
+		speedFactor: 0.12, 
+		zoomFactor: 2 //Shows how close should camera be while "ShowPlanet" 
 	},
 	earth: {
-		orbit: 7500,
+		orbit: 6000,
 		rotation: 0.05,
-		speedFactor: 0.1
+		speedFactor: 0.1,
+		zoomFactor: 2
 	},
 	mars: {
-		orbit: 9000,
+		orbit: 7500,
 		rotation: 0.05,
-		speedFactor: 0.08
+		speedFactor: 0.08,
+		zoomFactor: 2
 	},
 	jupiter: {
-		orbit: 11000,
+		orbit: 10000,
 		rotation: 0.12,
-		speedFactor: 0.043
+		speedFactor: 0.043,
+		zoomFactor: 4
 	},
 	saturn: {
-		orbit: 13500,
+		orbit: 13000,
 		rotation: 0.06,
-		speedFactor: 0.032
+		speedFactor: 0.032,
+		zoomFactor: 4
 	},
 	uranus: {
 		orbit: 15000,
 		rotation: -0.14,
-		speedFactor: 0.023
+		speedFactor: 0.023,
+		zoomFactor: 4
 	},
 	neptune: {
 		orbit: 17000,
 		rotation: 0.075,
-		speedFactor: 0.019
+		speedFactor: 0.019,
+		zoomFactor: 4
 	},
 	pluto: {
 		orbit: 17500,
 		rotation: 0.008,
 		speedFactor: 0.015,
-		verticalOrbitFactor: 0.5 //
+		verticalOrbitFactor: 0.5,
+		zoomFactor:  4
 	}
 }
 
@@ -61,7 +70,7 @@ container = document.createElement("div");
 document.body.appendChild(container);
 
 camera = new THREE.PerspectiveCamera(45,W/H,1,100000);
-camera.position.z = 20000;
+camera.position.z = 25000;
 scene = new THREE.Scene();
 scene.add(camera)
 
@@ -110,7 +119,7 @@ scene.add(sun);
 //Earth
 
 var earth, earth_geom, earth_mat;
-earth_geom = new THREE.SphereGeometry(150,20,20);
+earth_geom = new THREE.SphereGeometry(300,20,20);
 
 var earth_texture = new THREE.TextureLoader().load('images/earth.jpg');
 earth_texture.anisotropy = 8;
@@ -146,7 +155,7 @@ scene.add(earth_orbit);
 //Mercury
 
 var mercury, mercury_geom, mercury_mat;
-mercury_geom = new THREE.SphereGeometry(90,20,20);
+mercury_geom = new THREE.SphereGeometry(180,20,20);
 
 var mercury_texture = new THREE.TextureLoader().load('images/mercury.jpg');
 mercury_texture.anisotropy = 8;
@@ -182,7 +191,7 @@ scene.add(mercury_orbit);
 //venus
 
 var venus, venus_geom, venus_mat;
-venus_geom = new THREE.SphereGeometry(120,20,20);
+venus_geom = new THREE.SphereGeometry(240,20,20);
 
 var venus_texture = new THREE.TextureLoader().load('images/venus.jpg');
 venus_texture.anisotropy = 8;
@@ -217,7 +226,7 @@ scene.add(vanus_orbit);
 //mars
 
 var mars, mars_geom, mars_mat;
-mars_geom = new THREE.SphereGeometry(75,20,20);
+mars_geom = new THREE.SphereGeometry(150,20,20);
 
 var mars_texture = new THREE.TextureLoader().load('images/mars.jpg');
 mars_texture.anisotropy = 8;
@@ -253,7 +262,7 @@ scene.add(mars_orbit);
 //jupiter
 
 var jupiter, jupiter_geom, jupiter_mat;
-jupiter_geom = new THREE.SphereGeometry(350,60,60);
+jupiter_geom = new THREE.SphereGeometry(700,60,60);
 
 var jupiter_texture = new THREE.TextureLoader().load('images/jupiter.jpg');
 jupiter_texture.anisotropy = 8;
@@ -286,9 +295,9 @@ var ring_jupiter_main_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0;i<5000;i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI/180*i)*(750-i/90);
+	vertex.x = Math.sin(Math.PI/180*i)*(1500-i/90);
 	vertex.y = Math.random()*20;
-	vertex.z = Math.cos(Math.PI/180*i)*(750-i/90);
+	vertex.z = Math.cos(Math.PI/180*i)*(1500-i/90);
 	ring_jupiter_main_geom.vertices.push(vertex);
 }
 
@@ -308,9 +317,9 @@ var ring_jupiter_additional_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0;i<5000;i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI/180*i)*(660-i/40);
+	vertex.x = Math.sin(Math.PI/180*i)*(1320-i/40);
 	vertex.y = Math.random()*20;
-	vertex.z = Math.cos(Math.PI/180*i)*(660-i/40);
+	vertex.z = Math.cos(Math.PI/180*i)*(1320-i/40);
 	ring_jupiter_additional_geom.vertices.push(vertex);
 }
 
@@ -331,9 +340,9 @@ var ring_jupiter_additional_sub_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0;i<5000;i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI/180*i)*(510-i/50);
+	vertex.x = Math.sin(Math.PI/180*i)*(1020-i/50);
 	vertex.y = Math.random()*20;
-	vertex.z = Math.cos(Math.PI/180*i)*(510-i/50);
+	vertex.z = Math.cos(Math.PI/180*i)*(1020-i/50);
 	ring_jupiter_additional_sub_geom.vertices.push(vertex);
 }
 
@@ -359,7 +368,7 @@ scene.add(jupiter_orbit);
 //saturn
 
 var saturn, saturn_geom, saturn_mat;
-saturn_geom = new THREE.SphereGeometry(300,20,20);
+saturn_geom = new THREE.SphereGeometry(600,20,20);
 
 var saturn_texture = new THREE.TextureLoader().load('images/saturn.jpg');
 saturn_texture.anisotropy = 8;
@@ -383,9 +392,9 @@ var ring_saturn_mat = new THREE.PointCloudMaterial({
 
 for (var i = 0;i<10000;i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI/180*i)*(640-i/50);
+	vertex.x = Math.sin(Math.PI/180*i)*(1280-i/30);
 	vertex.y = Math.random()*20;
-	vertex.z = Math.cos(Math.PI/180*i)*(640-i/50);
+	vertex.z = Math.cos(Math.PI/180*i)*(1280-i/30);
 	ring_saturn_geom.vertices.push(vertex);
 }
 
@@ -416,7 +425,7 @@ scene.add(saturn_orbit);
 //uranus
 
 var uranus, uranus_geom, uranus_mat;
-uranus_geom = new THREE.SphereGeometry(250,20,20);
+uranus_geom = new THREE.SphereGeometry(500,20,20);
 
 var uranus_texture = new THREE.TextureLoader().load('images/uranus.jpg');
 uranus_texture.anisotropy = 8;
@@ -459,9 +468,9 @@ var ring_uranus_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0;i<5000;i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI/180*i)*(600-i/40);
+	vertex.x = Math.sin(Math.PI/180*i)*(1200-i/20);
 	vertex.y = Math.random()*20;
-	vertex.z = Math.cos(Math.PI/180*i)*(600-i/40);
+	vertex.z = Math.cos(Math.PI/180*i)*(1200-i/20);
 	ring_uranus_geom.vertices.push(vertex);
 }
 
@@ -473,7 +482,7 @@ scene.add(ring_uranus);
 //neptune
 
 var neptune, neptune_geom, neptune_mat;
-neptune_geom = new THREE.SphereGeometry(175,20,20);
+neptune_geom = new THREE.SphereGeometry(350,20,20);
 
 var neptune_texture = new THREE.TextureLoader().load('images/neptune.jpg');
 neptune_texture.anisotropy = 8;
@@ -509,7 +518,7 @@ scene.add(neptune_orbit);
 //pluto
 
 var pluto, pluto_geom, pluto_mat;
-pluto_geom = new THREE.SphereGeometry(50,20,20);
+pluto_geom = new THREE.SphereGeometry(100,20,20);
 
 var pluto_texture = new THREE.TextureLoader().load('images/pluto.jpg');
 pluto_texture.anisotropy = 8;

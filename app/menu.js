@@ -64,8 +64,8 @@ for (var i = 0; i < planets.length; i++) {
 function showPlanet(planet) {
 	hideInfo();
 	isInfoShown = true;
-	camera.position.x = Math.sin((t - Math.PI / 180 * 200) * planetSettings[planet].speedFactor) * planetSettings[planet].orbit;
-	camera.position.z = Math.cos((t - Math.PI / 180 * 200) * planetSettings[planet].speedFactor) * planetSettings[planet].orbit;
+	camera.position.x = Math.sin((t - Math.PI / 180 * 100 * planetSettings[planet].zoomFactor) * planetSettings[planet].speedFactor) * planetSettings[planet].orbit;
+	camera.position.z = Math.cos((t - Math.PI / 180 * 100 * planetSettings[planet].zoomFactor) * planetSettings[planet].speedFactor) * planetSettings[planet].orbit;
 	camera.position.y = sun.position.y + 200;
 	camera.lookAt(window[planet].position);
 	showReturnButton();
