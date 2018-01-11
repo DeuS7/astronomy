@@ -1,4 +1,4 @@
-function hidePreloader() {
+/*function hidePreloader() {
 	setTimeout(function() {
 		preloader.classList.add("done");
 	}, 4000);
@@ -26,4 +26,4 @@ setTimeout(function initPerc() {
 	}
 }, 100);
 
-setTimeout(hidePreloader, 1000);
+setTimeout(hidePreloader, 1000);*/

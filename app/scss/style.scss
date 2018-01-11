@@ -80,7 +80,7 @@ body {
 	background: rgba(0,0,0,.9);
 
 	&.opened {
-		left: 0;
+		transform: translateX(100%);
 	}
 	.mainMenuItem {
 		position: relative;
@@ -124,6 +124,11 @@ body {
 		}
 	}
 }
+#mainMenuInnerWrapper {
+	width: 100%;
+	overflow: hidden;
+	transition: .8s;
+}
 #mainMenu:before {
 	content: '';
 	height: 100%;
@@ -140,7 +145,7 @@ body {
 
 	width: 80%;
 	height: 100vh;
-	margin-left: 10%;
+	margin: 0 auto;
 
 	transition: 1s;
 

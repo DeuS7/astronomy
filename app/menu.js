@@ -6,7 +6,8 @@ var navicon = document.getElementById("navicon"),
     upButton = document.getElementById("upButton"),
     downButton = document.getElementById("downButton"),
     showSystemButton = document.getElementById("showSystem"),
-    showInfoBlock = document.getElementById("showInfo");
+    showInfoBlock = document.getElementById("showInfo"),
+    mainMenuWrapper = document.getElementById("mainMenuInnerWrapper");
 var amountOfMenuPages = document.getElementsByClassName("mainMenuInner").length,
     currentPage = 0;
 
@@ -36,8 +37,7 @@ function openMenuPage(page) {
 	if (currentPage == 0) {
 		upButton.classList.add("inactiveElement");
 	}
-	var firstMenuEl = document.getElementsByClassName("mainMenuInner")[0];
-	firstMenuEl.style.marginTop = -currentPage * 100 + "vh";
+	mainMenuWrapper.style.transform = "translateY(" + -100 * currentPage + "vh)";
 }
 
 function toggleMenu() {
@@ -123,12 +123,12 @@ mainMenu.addEventListener('mousewheel', function (e) {
 });
 
 function showInfo(planet) {
-	showInfoBlock.style.right = 0;
+	showInfoBlock.style.transform = "translateX(-200%)";
 	document.getElementById(planet).style.opacity = 1;
 	document.getElementById(planet).style.zIndex = 20;
 }
 function hideInfo() {
-	showInfoBlock.style.right = -100 + "%";
+	showInfoBlock.style.transform = "translateX(0)";
 	var items = document.getElementsByClassName("showInfoItem");
 	for (var i = 0; i < items.length; i++) {
 		items[i].style.opacity = 0;
