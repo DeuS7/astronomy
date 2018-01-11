@@ -41,7 +41,7 @@ html {
 
 body {
   color: black;
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-family: "Arial", sans-serif; }
 
 .container {
@@ -255,7 +255,9 @@ h3.showInfoTitle {
 
 .planetInfoTable {
   width: 50%;
-  border-collapse: collapse; }
+  border-collapse: collapse;
+  margin: 0 auto;
+  border-style: hidden; }
   .planetInfoTable td {
     font-size: 20px;
     padding: 10px 0;
@@ -279,12 +281,6 @@ h3.showInfoTitle {
   .planetInfoImg img {
     width: 100%; }
 
-.peppermintGallery {
-  position: relative;
-  margin-top: 15px; }
-  .peppermintGallery img {
-    width: 100%; }
-
 .videoWrapper {
   position: relative;
   height: 0;
@@ -300,10 +296,9 @@ h3.showInfoTitle {
   height: 100%; }
 
 .swiper-slide {
-  color: white;
-  font-size: 30px; }
+  color: white; }
 
-.swiper-container {
+.swiperPresentation {
   width: 100%;
   height: 100%; }
 
@@ -328,3 +323,85 @@ h3.showInfoTitle {
 .swiper-pagination-bullet {
   width: 12px;
   height: 12px; }
+
+.swiperFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative; }
+  .swiperFlex:after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    background: red; }
+  .swiperFlex:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    left: 50%;
+    top: 0;
+    background: red; }
+
+.swiperFlexLine {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
+  .swiperFlexLine .swiperFlexCell {
+    height: 100%;
+    width: 50%; }
+
+.swiperFlexCellText {
+  padding: 10px 10px;
+  font-size: 1.8rem; }
+  .swiperFlexCellText p {
+    line-height: 1.3; }
+  .swiperFlexCellText h2 {
+    font-size: 2.2rem;
+    line-height: 2;
+    font-weight: bold; }
+
+.swiperFlexCellImg img {
+  width: 100%;
+  height: 100%; }
+
+.swiperFlexCellTable table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none; }
+  .swiperFlexCellTable table td {
+    width: 50%;
+    padding: 10px 5px;
+    border: 1px solid red; }
+  .swiperFlexCellTable table caption {
+    padding: 5px 0; }
+
+.swiperPlanetInfo {
+  width: 100%; }
+  .swiperPlanetInfo img {
+    width: 100%; }
+
+.swiperFlexSuperImage img {
+  width: 100%;
+  height: 100%; }
+
+.swiperPresentationIntro {
+  position: relative; }
+  .swiperPresentationIntro img {
+    width: 100%;
+    height: 100%; }
+
+.swiperPresentationIntroTitle {
+  position: absolute;
+  font-size: 60px;
+  font-weight: bold;
+  color: red;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  letter-spacing: .5em; }

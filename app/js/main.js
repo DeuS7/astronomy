@@ -2,6 +2,8 @@ var scene, camera, render, container, light, ambient;
 var W,H;
 var isInfoShown = false;
 
+var rotationFactor = 2*Math.PI*7/360; //To make planet looa at the sun while rotation.
+
 var planetSettings = {
 	mercury: {
 		orbit: 3000,
@@ -11,7 +13,7 @@ var planetSettings = {
 	},
 	venus: {
 		orbit: 4500,
-		rotation: -0.00023,
+		rotation: -0.00023, //Zusammen mit Uranus in entgegengesetzer Ordnung
 		speedFactor: 0.12
 	},
 	earth: {
@@ -26,8 +28,7 @@ var planetSettings = {
 	},
 	jupiter: {
 		orbit: 11000,
-		//rotation: 0.12,
-		rotation: 0,
+		rotation: 0.12,
 		speedFactor: 0.043
 	},
 	saturn: {
@@ -120,6 +121,7 @@ var earth_mat = new THREE.MeshLambertMaterial({
 
 earth = new THREE.Mesh(earth_geom, earth_mat);
 earth.castShadow = true;
+earth.rotation.x = 0.40596358; //23.26 deg in radians;
 scene.add(earth);
 
 var orbit_earth_geom = new THREE.Geometry();
@@ -226,6 +228,7 @@ var mars_mat = new THREE.MeshLambertMaterial({
 
 mars = new THREE.Mesh(mars_geom, mars_mat);
 mars.castShadow = true;
+mars.rotation.x = 0.43964844;
 scene.add(mars);
 
 var orbit_mars_geom = new THREE.Geometry();
@@ -261,6 +264,7 @@ var jupiter_mat = new THREE.MeshLambertMaterial({
 
 jupiter = new THREE.Mesh(jupiter_geom, jupiter_mat);
 jupiter.castShadow = true;
+jupiter.rotation.x = 0.05462881;
 scene.add(jupiter);
 
 var orbit_jupiter_geom = new THREE.Geometry();
@@ -290,6 +294,7 @@ for (var i = 0;i<5000;i++) {
 
 var ring_jupiter_main = new THREE.ParticleSystem(ring_jupiter_main_geom, ring_jupiter_main_mat);
 ring_jupiter_main.castShadow = true;
+ring_jupiter_main.rotation.x = 0.05462881;
 scene.add(ring_jupiter_main);
 
 
@@ -311,6 +316,7 @@ for (var i = 0;i<5000;i++) {
 
 var ring_jupiter_additional = new THREE.ParticleSystem(ring_jupiter_additional_geom, ring_jupiter_additional_mat);
 ring_jupiter_additional.castShadow = true;
+ring_jupiter_additional.rotation.x = 0.05462881;
 scene.add(ring_jupiter_additional);
 
 
@@ -333,6 +339,7 @@ for (var i = 0;i<5000;i++) {
 
 var ring_jupiter_additional_sub = new THREE.ParticleSystem(ring_jupiter_additional_sub_geom, ring_jupiter_additional_sub_mat);
 ring_jupiter_additional_sub.castShadow = true;
+ring_jupiter_additional_sub.rotation.x = 0.05462881;
 scene.add(ring_jupiter_additional_sub);
 
 
@@ -363,12 +370,12 @@ var saturn_mat = new THREE.MeshLambertMaterial({
 
 saturn = new THREE.Mesh(saturn_geom, saturn_mat);
 saturn.castShadow = true;
-saturn.rotation.z = Math.PI/5;
+saturn.rotation.x = 0.46652651;
 scene.add(saturn);
 
 var ring_saturn_geom = new THREE.Geometry();
 var ring_saturn_mat = new THREE.PointCloudMaterial({
-	color: "#ffffff",
+	color: "#cecece",
 	opacity: 1,
 	size: 1,
 	sizeAttenuation: false
@@ -376,15 +383,15 @@ var ring_saturn_mat = new THREE.PointCloudMaterial({
 
 for (var i = 0;i<10000;i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI/180*i)*(620-i/50);
+	vertex.x = Math.sin(Math.PI/180*i)*(640-i/50);
 	vertex.y = Math.random()*20;
-	vertex.z = Math.cos(Math.PI/180*i)*(620-i/50);
+	vertex.z = Math.cos(Math.PI/180*i)*(640-i/50);
 	ring_saturn_geom.vertices.push(vertex);
 }
 
 var ring_saturn = new THREE.ParticleSystem(ring_saturn_geom, ring_saturn_mat);
 ring_saturn.castShadow = true;
-ring_saturn.rotation.z = Math.PI/5;
+ring_saturn.rotation.x = 0.46652651;
 scene.add(ring_saturn);
 
 var orbit_saturn_geom = new THREE.Geometry();
@@ -409,7 +416,7 @@ scene.add(saturn_orbit);
 //uranus
 
 var uranus, uranus_geom, uranus_mat;
-uranus_geom = new THREE.SphereGeometry(200,20,20);
+uranus_geom = new THREE.SphereGeometry(250,20,20);
 
 var uranus_texture = new THREE.TextureLoader().load('images/uranus.jpg');
 uranus_texture.anisotropy = 8;
@@ -420,6 +427,7 @@ var uranus_mat = new THREE.MeshLambertMaterial({
 
 uranus = new THREE.Mesh(uranus_geom, uranus_mat);
 uranus.castShadow = true;
+uranus.rotation.x = 1.7064084;
 scene.add(uranus);
 
 var orbit_uranus_geom = new THREE.Geometry();
@@ -441,6 +449,27 @@ var uranus_orbit = new THREE.ParticleSystem(orbit_uranus_geom, uranus_orbit_mat)
 uranus_orbit.castShadow = true;
 scene.add(uranus_orbit);
 
+var ring_uranus_geom = new THREE.Geometry();
+var ring_uranus_mat = new THREE.ParticleBasicMaterial({
+	color: "#cecece",
+	opacity: 0.3,
+	size: 1,
+	sizeAttenuation: false
+});
+
+for (var i = 0;i<5000;i++) {
+	var vertex = new THREE.Vector3();
+	vertex.x = Math.sin(Math.PI/180*i)*(600-i/40);
+	vertex.y = Math.random()*20;
+	vertex.z = Math.cos(Math.PI/180*i)*(600-i/40);
+	ring_uranus_geom.vertices.push(vertex);
+}
+
+var ring_uranus = new THREE.ParticleSystem(ring_uranus_geom, ring_uranus_mat);
+ring_uranus.castShadow = true;
+ring_uranus.rotation.x = 1.7064084;
+scene.add(ring_uranus);
+
 //neptune
 
 var neptune, neptune_geom, neptune_mat;
@@ -455,6 +484,7 @@ var neptune_mat = new THREE.MeshLambertMaterial({
 
 neptune = new THREE.Mesh(neptune_geom, neptune_mat);
 neptune.castShadow = true;
+neptune.rotation.x = 0.49427724;
 scene.add(neptune);
 
 var orbit_neptune_geom = new THREE.Geometry();
@@ -535,7 +565,9 @@ function animate() {
 	mercury.rotation.y += planetSettings.mercury.rotation;
 	venus.rotation.y += planetSettings.venus.rotation;
 	mars.rotation.y += planetSettings.mars.rotation;
+
 	jupiter.rotation.y += planetSettings.jupiter.rotation;
+
 	saturn.rotation.y += planetSettings.saturn.rotation;
 	ring_saturn.rotation.y += planetSettings.saturn.rotation;
 	ring_jupiter_main.rotation.y += planetSettings.saturn.rotation;
@@ -559,6 +591,9 @@ function animate() {
 	ring_jupiter_additional_sub.position.x = jupiter.position.x;
 	ring_jupiter_additional_sub.position.z = jupiter.position.z;
 
+	ring_uranus.position.x = uranus.position.x;
+	ring_uranus.position.z = uranus.position.z;
+
 	//Movement of the planets
 
 	earth.position.x = Math.sin(t*planetSettings.earth.speedFactor)*planetSettings.earth.orbit;
@@ -566,7 +601,7 @@ function animate() {
 
 	mercury.position.x = Math.sin(t*planetSettings.mercury.speedFactor)*planetSettings.mercury.orbit;
 	mercury.position.z = Math.cos(t*planetSettings.mercury.speedFactor)*planetSettings.mercury.orbit;
-	mercury.position.y = Math.sin(t*planetSettings.mercury.speedFactor)*planetSettings.mercury.orbit*planetSettings.mercury.verticalOrbitFactor;
+	mercury.position.y = Math.cos(t*planetSettings.mercury.speedFactor)*planetSettings.mercury.orbit*planetSettings.mercury.verticalOrbitFactor;
 
 	venus.position.x = Math.sin(t*planetSettings.venus.speedFactor)*planetSettings.venus.orbit;
 	venus.position.z = Math.cos(t*planetSettings.venus.speedFactor)*planetSettings.venus.orbit;
