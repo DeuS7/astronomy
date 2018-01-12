@@ -3,9 +3,16 @@
 var scene, camera, render, container, light, ambient;
 var W, H;
 var isInfoShown = false;
+var earthMoon = {
+	position: {}
+};
+var plutoCharo = {
+	position: {}
 
-//
-var PHx, PHz, PHy;
+	//
+};var PHx, PHz, PHy;
+
+var EMx, EMz;
 //
 
 var rotationFactor = 2 * Math.PI * 7 / 360; //To make planet look at the sun while rotation. Deprecated.
@@ -22,13 +29,27 @@ var planetSettings = {
 		orbit: 4500,
 		rotation: -0.00023, //Zusammen mit Uranus in entgegengesetzer Ordnung
 		speedFactor: 0.12,
-		zoomFactor: 2 //Shows how close should camera be while "ShowPlanet" 
+		zoomFactor: -6 //Shows how close should camera be while "ShowPlanet" 
 	},
-	earth: {
+	earthMoon: {
 		orbit: 6000,
 		rotation: 0.05,
 		speedFactor: 0.1,
 		zoomFactor: 2
+	},
+	earth: {
+		localOrbit: 200,
+		rotation: 0.05,
+		speedFactor: 1,
+		zoomFactor: 2,
+		orbit: 6000
+	},
+	moon: {
+		localOrbit: 600,
+		rotation: 0.05,
+		speedFactor: 1,
+		zoomFactor: 2,
+		orbit: 6000
 	},
 	mars: {
 		orbit: 7500,
@@ -52,7 +73,7 @@ var planetSettings = {
 		orbit: 15000,
 		rotation: -0.14,
 		speedFactor: 0.023,
-		zoomFactor: 4
+		zoomFactor: -6
 	},
 	neptune: {
 		orbit: 17000,
@@ -72,14 +93,16 @@ var planetSettings = {
 		rotation: 0.008 * rotationFactor,
 		speedFactor: 0.200,
 		verticalOrbitFactor: 0.5,
-		zoomFactor: 5
+		zoomFactor: 5,
+		orbit: 17500
 	},
 	charon: {
 		localOrbit: 600,
 		rotation: 0.008 * rotationFactor,
 		speedFactor: 0.200,
 		verticalOrbitFactor: 0.5,
-		zoomFactor: 5
+		zoomFactor: 5,
+		orbit: 17500
 	}
 };
 
@@ -161,14 +184,30 @@ var earth_orbit_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.earth.orbit;
-	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.earth.orbit;
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.earthMoon.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.earthMoon.orbit;
 	orbit_earth_geom.vertices.push(vertex);
 }
 
 var earth_orbit = new THREE.ParticleSystem(orbit_earth_geom, earth_orbit_mat);
 earth_orbit.castShadow = true;
 scene.add(earth_orbit);
+
+//Mond
+
+var moon, moon_geom, moon_mat;
+moon_geom = new THREE.SphereGeometry(100, 40, 40);
+
+var moon_texture = new THREE.TextureLoader().load('images/moon.jpg');
+moon_texture.anisotropy = 8;
+var moon_mat = new THREE.MeshLambertMaterial({
+	map: moon_texture,
+	overdraw: true
+});
+
+moon = new THREE.Mesh(moon_geom, moon_mat);
+moon.castShadow = true;
+scene.add(moon);
 
 //Mercury
 
@@ -587,6 +626,7 @@ render.setSize(W, H);
 render.setClearColor(0x000000, 1);
 container.appendChild(render.domElement);
 var t = 0;
+var ts = 0;
 var y = 0;
 var x = 0;
 
@@ -635,9 +675,6 @@ function animate() {
 
 	//Movement of the planets
 
-	earth.position.x = Math.sin(t * planetSettings.earth.speedFactor) * planetSettings.earth.orbit;
-	earth.position.z = Math.cos(t * planetSettings.earth.speedFactor) * planetSettings.earth.orbit;
-
 	mercury.position.x = Math.sin(t * planetSettings.mercury.speedFactor) * planetSettings.mercury.orbit;
 	mercury.position.z = Math.cos(t * planetSettings.mercury.speedFactor) * planetSettings.mercury.orbit;
 	mercury.position.y = Math.cos(t * planetSettings.mercury.speedFactor) * planetSettings.mercury.orbit * planetSettings.mercury.verticalOrbitFactor;
@@ -660,17 +697,34 @@ function animate() {
 	neptune.position.x = Math.sin(t * planetSettings.neptune.speedFactor) * planetSettings.neptune.orbit;
 	neptune.position.z = Math.cos(t * planetSettings.neptune.speedFactor) * planetSettings.neptune.orbit;
 
+	EMx = Math.sin(t * planetSettings.earthMoon.speedFactor) * planetSettings.earthMoon.orbit;
+	EMz = Math.cos(t * planetSettings.earthMoon.speedFactor) * planetSettings.earthMoon.orbit;
+
+	earth.position.x = Math.sin(-ts * planetSettings.earth.speedFactor) * planetSettings.earth.localOrbit + EMx;
+	earth.position.z = -Math.cos(-ts * planetSettings.earth.speedFactor) * planetSettings.earth.localOrbit + EMz;
+
+	moon.position.x = Math.sin(ts * planetSettings.moon.speedFactor) * planetSettings.moon.localOrbit + EMx;
+	moon.position.z = Math.cos(ts * planetSettings.moon.speedFactor) * planetSettings.moon.localOrbit + EMz;
+
+	earthMoon.position.x = EMx;
+	earthMoon.position.y = 0;
+	earthMoon.position.z = EMz;
+
 	PHx = Math.sin(t * planetSettings.plutoCharo.speedFactor) * planetSettings.plutoCharo.orbit;
 	PHz = Math.cos(t * planetSettings.plutoCharo.speedFactor) * planetSettings.plutoCharo.orbit;
 	PHy = Math.sin(t * planetSettings.plutoCharo.speedFactor) * planetSettings.plutoCharo.orbit * planetSettings.plutoCharo.verticalOrbitFactor;
 
-	pluto.position.x = Math.sin(-t * planetSettings.charon.speedFactor) * planetSettings.pluto.localOrbit + PHx;
-	pluto.position.z = -Math.cos(-t * planetSettings.charon.speedFactor) * planetSettings.pluto.localOrbit + PHz;
+	pluto.position.x = Math.sin(-ts * planetSettings.charon.speedFactor) * planetSettings.pluto.localOrbit + PHx;
+	pluto.position.z = -Math.cos(-ts * planetSettings.charon.speedFactor) * planetSettings.pluto.localOrbit + PHz;
 	pluto.position.y = PHy;
 
-	charon.position.x = Math.sin(t * planetSettings.charon.speedFactor) * planetSettings.charon.localOrbit + PHx;
-	charon.position.z = Math.cos(t * planetSettings.charon.speedFactor) * planetSettings.charon.localOrbit + PHz;
+	charon.position.x = Math.sin(ts * planetSettings.charon.speedFactor) * planetSettings.charon.localOrbit + PHx;
+	charon.position.z = Math.cos(ts * planetSettings.charon.speedFactor) * planetSettings.charon.localOrbit + PHz;
 	charon.position.y = PHy;
+
+	plutoCharo.position.x = PHx;
+	plutoCharo.position.y = PHy;
+	plutoCharo.position.z = PHz;
 
 	//Camera settings
 
@@ -682,6 +736,7 @@ function animate() {
 
 		t += Math.PI / 180 * 7;
 	}
+	ts += Math.PI / 180 * 7;
 
 	render.render(scene, camera);
 }

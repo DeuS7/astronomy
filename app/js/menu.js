@@ -61,8 +61,8 @@ function showPlanet(planet) {
 	isInfoShown = true;
 	camera.position.x = Math.sin((t-Math.PI/180*100*planetSettings[planet].zoomFactor)*planetSettings[planet].speedFactor)*planetSettings[planet].orbit;
 	camera.position.z = Math.cos((t-Math.PI/180*100*planetSettings[planet].zoomFactor)*planetSettings[planet].speedFactor)*planetSettings[planet].orbit;
-	camera.position.y = sun.position.y + 200;
-	camera.lookAt(window[planet].position);
+	camera.position.y = window[planet].position.y + 200;
+	camera.lookAt(window[planet].position.x, window[planet].position.y, window[planet].position.z);
 	showReturnButton();
 	showInfo(planet);
 }
