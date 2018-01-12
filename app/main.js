@@ -61,7 +61,7 @@ var planetSettings = {
 		rotation: 0.008,
 		speedFactor: 0.015,
 		verticalOrbitFactor: 0.5,
-		zoomFactor: 4
+		zoomFactor: 5
 	}
 };
 
