@@ -4,6 +4,10 @@ var scene, camera, render, container, light, ambient;
 var W, H;
 var isInfoShown = false;
 
+//
+var PHx, PHz, PHy;
+//
+
 var rotationFactor = 2 * Math.PI * 7 / 360; //To make planet look at the sun while rotation. Deprecated.
 
 var planetSettings = {
@@ -56,10 +60,24 @@ var planetSettings = {
 		speedFactor: 0.019,
 		zoomFactor: 4
 	},
-	pluto: {
+	plutoCharo: {
 		orbit: 17500,
 		rotation: 0.008,
-		speedFactor: 0.015,
+		speedFactor: 0.01,
+		verticalOrbitFactor: 0.5,
+		zoomFactor: 5
+	},
+	pluto: {
+		localOrbit: 200,
+		rotation: 0.008 * rotationFactor,
+		speedFactor: 0.200,
+		verticalOrbitFactor: 0.5,
+		zoomFactor: 5
+	},
+	charon: {
+		localOrbit: 600,
+		rotation: 0.008 * rotationFactor,
+		speedFactor: 0.200,
 		verticalOrbitFactor: 0.5,
 		zoomFactor: 5
 	}
@@ -537,15 +555,31 @@ var pluto_orbit_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 10000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.pluto.orbit;
-	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.pluto.orbit;
-	vertex.y = Math.sin(Math.PI / 180 * i) * planetSettings.pluto.orbit * planetSettings.pluto.verticalOrbitFactor; //0.4 to reduce the angle. Number can be various.
+	vertex.x = Math.sin(Math.PI / 180 * i) * planetSettings.plutoCharo.orbit;
+	vertex.z = Math.cos(Math.PI / 180 * i) * planetSettings.plutoCharo.orbit;
+	vertex.y = Math.sin(Math.PI / 180 * i) * planetSettings.plutoCharo.orbit * planetSettings.plutoCharo.verticalOrbitFactor; //0.4 to reduce the angle. Number can be various.
 	orbit_pluto_geom.vertices.push(vertex);
 }
 
 var pluto_orbit = new THREE.ParticleSystem(orbit_pluto_geom, pluto_orbit_mat);
 pluto_orbit.castShadow = true;
 scene.add(pluto_orbit);
+
+//Experimental: Charon
+
+var charon, charon_geom, charon_mat;
+charon_geom = new THREE.SphereGeometry(100, 40, 40);
+
+var charon_texture = new THREE.TextureLoader().load('images/charon.png');
+charon_texture.anisotropy = 8;
+var charon_mat = new THREE.MeshLambertMaterial({
+	map: charon_texture,
+	overdraw: true
+});
+
+charon = new THREE.Mesh(charon_geom, charon_mat);
+charon.castShadow = true;
+scene.add(charon);
 
 //render
 render = new THREE.WebGLRenderer();
@@ -608,8 +642,8 @@ function animate() {
 	mercury.position.z = Math.cos(t * planetSettings.mercury.speedFactor) * planetSettings.mercury.orbit;
 	mercury.position.y = Math.cos(t * planetSettings.mercury.speedFactor) * planetSettings.mercury.orbit * planetSettings.mercury.verticalOrbitFactor;
 
-	venus.position.x = Math.sin(t * planetSettings.venus.speedFactor) * planetSettings.venus.orbit;
-	venus.position.z = Math.cos(t * planetSettings.venus.speedFactor) * planetSettings.venus.orbit;
+	venus.position.x = Math.sin(-t * planetSettings.venus.speedFactor) * planetSettings.venus.orbit;
+	venus.position.z = Math.cos(-t * planetSettings.venus.speedFactor) * planetSettings.venus.orbit;
 
 	mars.position.x = Math.sin(t * planetSettings.mars.speedFactor) * planetSettings.mars.orbit;
 	mars.position.z = Math.cos(t * planetSettings.mars.speedFactor) * planetSettings.mars.orbit;
@@ -620,15 +654,23 @@ function animate() {
 	saturn.position.x = Math.sin(t * planetSettings.saturn.speedFactor) * planetSettings.saturn.orbit;
 	saturn.position.z = Math.cos(t * planetSettings.saturn.speedFactor) * planetSettings.saturn.orbit;
 
-	uranus.position.x = Math.sin(t * planetSettings.uranus.speedFactor) * planetSettings.uranus.orbit;
-	uranus.position.z = Math.cos(t * planetSettings.uranus.speedFactor) * planetSettings.uranus.orbit;
+	uranus.position.x = Math.sin(-t * planetSettings.uranus.speedFactor) * planetSettings.uranus.orbit;
+	uranus.position.z = Math.cos(-t * planetSettings.uranus.speedFactor) * planetSettings.uranus.orbit;
 
 	neptune.position.x = Math.sin(t * planetSettings.neptune.speedFactor) * planetSettings.neptune.orbit;
 	neptune.position.z = Math.cos(t * planetSettings.neptune.speedFactor) * planetSettings.neptune.orbit;
 
-	pluto.position.x = Math.sin(t * planetSettings.pluto.speedFactor) * planetSettings.pluto.orbit;
-	pluto.position.z = Math.cos(t * planetSettings.pluto.speedFactor) * planetSettings.pluto.orbit;
-	pluto.position.y = Math.sin(t * planetSettings.pluto.speedFactor) * planetSettings.pluto.orbit * planetSettings.pluto.verticalOrbitFactor;
+	PHx = Math.sin(t * planetSettings.plutoCharo.speedFactor) * planetSettings.plutoCharo.orbit;
+	PHz = Math.cos(t * planetSettings.plutoCharo.speedFactor) * planetSettings.plutoCharo.orbit;
+	PHy = Math.sin(t * planetSettings.plutoCharo.speedFactor) * planetSettings.plutoCharo.orbit * planetSettings.plutoCharo.verticalOrbitFactor;
+
+	pluto.position.x = Math.sin(-t * planetSettings.charon.speedFactor) * planetSettings.pluto.localOrbit + PHx;
+	pluto.position.z = -Math.cos(-t * planetSettings.charon.speedFactor) * planetSettings.pluto.localOrbit + PHz;
+	pluto.position.y = PHy;
+
+	charon.position.x = Math.sin(t * planetSettings.charon.speedFactor) * planetSettings.charon.localOrbit + PHx;
+	charon.position.z = Math.cos(t * planetSettings.charon.speedFactor) * planetSettings.charon.localOrbit + PHz;
+	charon.position.y = PHy;
 
 	//Camera settings
 
