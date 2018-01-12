@@ -303,7 +303,7 @@ h3.showInfoTitle {
 .swiper-slide {
   color: white; }
 
-.swiperPresentation {
+.presentation {
   width: 100%;
   height: 100%; }
 
@@ -329,79 +329,89 @@ h3.showInfoTitle {
   width: 12px;
   height: 12px; }
 
-.swiperFlex {
+.FWImageCar {
+  width: 100%; }
+  .FWImageCar img {
+    width: 100%; }
+
+.flexBlock {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   position: relative; }
-  .swiperFlex:after {
-    content: "";
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    left: 0;
-    top: 50%;
-    background: red; }
-  .swiperFlex:before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 1px;
-    left: 50%;
-    top: 0;
-    background: red; }
 
-.swiperFlexLine {
+.crossedBlock:after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  background: red; }
+
+.crossedBlock:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  left: 50%;
+  top: 0;
+  background: red; }
+
+.flexBlockLine {
   height: 50%;
   width: 100%;
   display: flex;
   justify-content: space-between; }
-  .swiperFlexLine .swiperFlexCell {
+  .flexBlockLine .flexBlockCell {
     height: 100%;
     width: 50%; }
 
-.swiperFlexCellText {
+.flexBlockCellText {
   padding: 10px 10px;
   font-size: 1.8rem; }
-  .swiperFlexCellText p {
+  .flexBlockCellText p {
     line-height: 1.3; }
-  .swiperFlexCellText h2 {
+  .flexBlockCellText h2 {
     font-size: 2.2rem;
     line-height: 2;
     font-weight: bold; }
 
-.swiperFlexCellImg img {
+.flexBlockCellImg {
+  overflow: hidden; }
+  .flexBlockCellImg img {
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .flexBlockCellImg img:hover {
+      transform: scale(1.1); }
+
+.flexBlockCellTable {
+  overflow: auto; }
+  .flexBlockCellTable table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none; }
+    .flexBlockCellTable table td {
+      width: 50%;
+      padding: 10px 5px;
+      border: 1px solid red; }
+    .flexBlockCellTable table caption {
+      padding: 5px 0; }
+
+.flexBlockSuperImage img {
   width: 100%;
   height: 100%; }
 
-.swiperFlexCellTable table {
-  width: 100%;
-  border-collapse: collapse;
-  border: none; }
-  .swiperFlexCellTable table td {
-    width: 50%;
-    padding: 10px 5px;
-    border: 1px solid red; }
-  .swiperFlexCellTable table caption {
-    padding: 5px 0; }
-
-.swiperPlanetInfo {
-  width: 100%; }
-  .swiperPlanetInfo img {
-    width: 100%; }
-
-.swiperFlexSuperImage img {
-  width: 100%;
-  height: 100%; }
-
-.swiperPresentationIntro {
+.presentationIntro {
   position: relative; }
-  .swiperPresentationIntro img {
+  .presentationIntro img {
     width: 100%;
     height: 100%; }
 
-.swiperPresentationIntroTitle {
+.presentationIntroTitle {
   position: absolute;
   font-size: 60px;
   font-weight: bold;
@@ -410,3 +420,22 @@ h3.showInfoTitle {
   left: 50%;
   transform: translate(-50%, -50%);
   letter-spacing: .5em; }
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 75px;
+  height: 75px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: 0.3s; }
+
+.swiper-container:hover .swiper-button-next,
+.swiper-container:hover .swiper-button-prev {
+  background-color: rgba(255, 255, 255, 0.5); }
+
+.swiper-button-prev {
+  left: 25px; }
+
+.swiper-button-next {
+  right: 25px; }

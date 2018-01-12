@@ -119,7 +119,7 @@ scene.add(sun);
 //Earth
 
 var earth, earth_geom, earth_mat;
-earth_geom = new THREE.SphereGeometry(300,20,20);
+earth_geom = new THREE.SphereGeometry(300,40,40);
 
 var earth_texture = new THREE.TextureLoader().load('images/earth.jpg');
 earth_texture.anisotropy = 8;
@@ -155,7 +155,7 @@ scene.add(earth_orbit);
 //Mercury
 
 var mercury, mercury_geom, mercury_mat;
-mercury_geom = new THREE.SphereGeometry(180,20,20);
+mercury_geom = new THREE.SphereGeometry(180,40,40);
 
 var mercury_texture = new THREE.TextureLoader().load('images/mercury.jpg');
 mercury_texture.anisotropy = 8;
@@ -191,7 +191,7 @@ scene.add(mercury_orbit);
 //venus
 
 var venus, venus_geom, venus_mat;
-venus_geom = new THREE.SphereGeometry(240,20,20);
+venus_geom = new THREE.SphereGeometry(240,40,40);
 
 var venus_texture = new THREE.TextureLoader().load('images/venus.jpg');
 venus_texture.anisotropy = 8;
@@ -368,7 +368,7 @@ scene.add(jupiter_orbit);
 //saturn
 
 var saturn, saturn_geom, saturn_mat;
-saturn_geom = new THREE.SphereGeometry(600,20,20);
+saturn_geom = new THREE.SphereGeometry(600,40,40);
 
 var saturn_texture = new THREE.TextureLoader().load('images/saturn.jpg');
 saturn_texture.anisotropy = 8;
@@ -425,7 +425,7 @@ scene.add(saturn_orbit);
 //uranus
 
 var uranus, uranus_geom, uranus_mat;
-uranus_geom = new THREE.SphereGeometry(500,20,20);
+uranus_geom = new THREE.SphereGeometry(500,40,40);
 
 var uranus_texture = new THREE.TextureLoader().load('images/uranus.jpg');
 uranus_texture.anisotropy = 8;
@@ -482,7 +482,7 @@ scene.add(ring_uranus);
 //neptune
 
 var neptune, neptune_geom, neptune_mat;
-neptune_geom = new THREE.SphereGeometry(350,20,20);
+neptune_geom = new THREE.SphereGeometry(350,40,40);
 
 var neptune_texture = new THREE.TextureLoader().load('images/neptune.jpg');
 neptune_texture.anisotropy = 8;
@@ -518,7 +518,7 @@ scene.add(neptune_orbit);
 //pluto
 
 var pluto, pluto_geom, pluto_mat;
-pluto_geom = new THREE.SphereGeometry(100,20,20);
+pluto_geom = new THREE.SphereGeometry(100,40,40);
 
 var pluto_texture = new THREE.TextureLoader().load('images/pluto.jpg');
 pluto_texture.anisotropy = 8;

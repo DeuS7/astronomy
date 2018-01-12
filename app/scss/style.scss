@@ -338,7 +338,7 @@ h3.showInfoTitle {
 .swiper-slide {
 	color: white;
 }
-.swiperPresentation {
+.presentation {
 	width: 100%;
 	height: 100%;
 }
@@ -367,12 +367,21 @@ h3.showInfoTitle {
 	height: 12px;
 }
 
-.swiperFlex {
+.FWImageCar {
+	width: 100%;
+	img {
+		width: 100%;
+	}
+}
+
+.flexBlock {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
 	position: relative;
+}
+.crossedBlock {
 	&:after {
 		content: "";
 		position: absolute;
@@ -393,18 +402,18 @@ h3.showInfoTitle {
 	}
 }
 
-.swiperFlexLine {
+.flexBlockLine {
 	height: 50%;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	.swiperFlexCell {
+	.flexBlockCell {
 		height: 100%;
 		width: 50%;
 	}
 }
 
-.swiperFlexCellText {
+.flexBlockCellText {
 	padding: 10px 10px;
 	font-size: 1.8rem;
 	p {
@@ -416,14 +425,21 @@ h3.showInfoTitle {
 		font-weight: bold;
 	}
 }
-.swiperFlexCellImg {
+.flexBlockCellImg {
+	overflow: hidden;
 	img {
 		width: 100%;
 		height: 100%;
+		vertical-align: top; //One of the ways to remove space under the img tag
+		transition: .3s cubic-bezier(.175, .885, .32, 1.275);;
+		&:hover {
+			transform: scale(1.1);
+		}
 	}
 }
 
-.swiperFlexCellTable {
+.flexBlockCellTable {
+	overflow: auto;
 	table {
 		width: 100%;
 		border-collapse: collapse;
@@ -439,21 +455,14 @@ h3.showInfoTitle {
 	}
 }
 
-.swiperPlanetInfo {
-	width: 100%;
-	img {
-		width: 100%;
-	}
-}
-
-.swiperFlexSuperImage {
+.flexBlockSuperImage {
 	img {
 		width: 100%;
 		height: 100%;
 	}
 }
 
-.swiperPresentationIntro {
+.presentationIntro {
 	position: relative;
 	img {
 		width: 100%;
@@ -461,7 +470,7 @@ h3.showInfoTitle {
 	}
 }
 
-.swiperPresentationIntroTitle {
+.presentationIntroTitle {
 	position: absolute;
 	font-size: 60px;
 	font-weight: bold;
@@ -470,4 +479,26 @@ h3.showInfoTitle {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	letter-spacing: .5em;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+	width: 75px;
+	height: 75px;
+	padding: 15px;
+	background-color: rgba(255,255,255,0.1);
+	border-radius: 50%;
+	transition: 0.3s;
+}
+
+.swiper-container:hover .swiper-button-next,
+.swiper-container:hover .swiper-button-prev {
+	background-color: rgba(255,255,255,0.5);
+}
+
+.swiper-button-prev {
+	left: 25px;
+}
+.swiper-button-next {
+	right: 25px;
 }

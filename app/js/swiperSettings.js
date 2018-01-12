@@ -1,4 +1,4 @@
-var swiperPresentation = new Swiper ('.swiperPresentation', {
+var swiperPresentation = new Swiper ('.presentation', {
     // Optional parameters
     direction: 'horizontal',
     loop: false,
@@ -29,7 +29,7 @@ var swiperPresentation = new Swiper ('.swiperPresentation', {
     }
   });
 
-var swiperPlanetInfo = new Swiper ('.swiperPlanetInfo', {
+var swiperPlanetInfo = new Swiper ('.FWImageCar', {
     // Optional parameters
     direction: 'horizontal',
     loop: false,
