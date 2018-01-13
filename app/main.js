@@ -352,9 +352,9 @@ var ring_jupiter_main_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 5000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * (1500 - i / 90);
+	vertex.x = Math.sin(Math.PI / 180 * i) * (1600 - i / 30);
 	vertex.y = Math.random() * 20;
-	vertex.z = Math.cos(Math.PI / 180 * i) * (1500 - i / 90);
+	vertex.z = Math.cos(Math.PI / 180 * i) * (1600 - i / 30);
 	ring_jupiter_main_geom.vertices.push(vertex);
 }
 
@@ -373,9 +373,9 @@ var ring_jupiter_additional_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 5000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * (1320 - i / 40);
+	vertex.x = Math.sin(Math.PI / 180 * i) * (1320 - i / 30);
 	vertex.y = Math.random() * 20;
-	vertex.z = Math.cos(Math.PI / 180 * i) * (1320 - i / 40);
+	vertex.z = Math.cos(Math.PI / 180 * i) * (1320 - i / 30);
 	ring_jupiter_additional_geom.vertices.push(vertex);
 }
 
@@ -386,7 +386,7 @@ scene.add(ring_jupiter_additional);
 
 var ring_jupiter_additional_sub_geom = new THREE.Geometry();
 var ring_jupiter_additional_sub_mat = new THREE.ParticleBasicMaterial({
-	color: "#a5703b",
+	color: "#3C6472",
 	opacity: 0.3,
 	size: 1,
 	sizeAttenuation: false
@@ -394,9 +394,9 @@ var ring_jupiter_additional_sub_mat = new THREE.ParticleBasicMaterial({
 
 for (var i = 0; i < 5000; i++) {
 	var vertex = new THREE.Vector3();
-	vertex.x = Math.sin(Math.PI / 180 * i) * (1020 - i / 50);
+	vertex.x = Math.sin(Math.PI / 180 * i) * (1020 - i / 20);
 	vertex.y = Math.random() * 20;
-	vertex.z = Math.cos(Math.PI / 180 * i) * (1020 - i / 50);
+	vertex.z = Math.cos(Math.PI / 180 * i) * (1020 - i / 20);
 	ring_jupiter_additional_sub_geom.vertices.push(vertex);
 }
 
@@ -437,7 +437,7 @@ scene.add(saturn);
 
 var ring_saturn_geom = new THREE.Geometry();
 var ring_saturn_mat = new THREE.PointCloudMaterial({
-	color: "#666666",
+	color: "#D8D6D4",
 	opacity: 1,
 	size: 1,
 	sizeAttenuation: false
@@ -513,7 +513,7 @@ scene.add(uranus_orbit);
 
 var ring_uranus_geom = new THREE.Geometry();
 var ring_uranus_mat = new THREE.ParticleBasicMaterial({
-	color: "#666666",
+	color: "#3C6472",
 	opacity: 0.3,
 	size: 1,
 	sizeAttenuation: false

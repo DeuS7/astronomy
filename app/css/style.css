@@ -42,7 +42,7 @@ html {
 body {
   color: black;
   font-size: 2rem;
-  font-family: "Arial", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
 
 .container {
   margin: 0 auto;
@@ -72,10 +72,10 @@ body {
     #preloader #loader #percentage {
       font-size: 80px;
       position: absolute;
-      top: 50%;
+      top: 100%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      color: white; }
+      transform: translateX(-50%);
+      color: #3C6472; }
   #preloader.done {
     visibility: hidden;
     opacity: 0; }
@@ -91,7 +91,7 @@ body {
   left: 15px;
   cursor: pointer;
   user-select: none;
-  color: white; }
+  color: #D8D6D4; }
 
 #mainMenu {
   position: fixed;
@@ -111,8 +111,10 @@ body {
     height: 40vh;
     cursor: pointer;
     transition: 0.3s cubic-bezier(0.53, 1.83, 0.99, 0.93);
-    border: 1px solid red;
-    background-size: 100% auto; }
+    border: 3px solid #3C6472;
+    background-size: 100% auto;
+    overflow: hidden;
+    border-radius: 15px; }
     #mainMenu .mainMenuItem:hover {
       background-size: 120% auto; }
     #mainMenu .mainMenuItem .mainMenuItemWrapper {
@@ -126,13 +128,15 @@ body {
       #mainMenu .mainMenuItem .mainMenuItemWrapper:hover {
         background: rgba(255, 255, 255, 0); }
     #mainMenu .mainMenuItem .mainMenuItemTitle {
-      font-size: 25px;
+      font-size: 27px;
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 30px;
-      color: white; }
+      color: #D8D6D4;
+      font-family: 'Oswald', sans-serif;
+      font-weight: bold; }
 
 #mainMenuInnerWrapper {
   width: 100%;
@@ -156,7 +160,7 @@ body {
   height: 100vh;
   margin: 0 auto;
   transition: 1s;
-  border: 1px solid red;
+  border: 3px solid #3C6472;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap; }
@@ -193,10 +197,10 @@ body {
   height: 60px;
   line-height: 60px;
   font-size: 50px;
-  color: white;
+  color: #D8D6D4;
   border-radius: 5px;
   cursor: pointer;
-  background: red;
+  background: #3C6472;
   transition: 0.3s; }
 
 #downButton {
@@ -217,7 +221,7 @@ body {
   height: 25px;
   cursor: pointer;
   cursor: pointer;
-  color: white; }
+  color: #D8D6D4; }
 
 .hidden {
   display: none !important; }
@@ -231,7 +235,7 @@ body {
   height: 100vh;
   transition: .5s;
   text-align: center;
-  border: 1px solid red; }
+  border: 3px solid #3C6472; }
   #showInfo #showInfoInner {
     position: relative;
     width: 100%;
@@ -252,16 +256,18 @@ body {
   z-index: 10; }
 
 h2.showInfoTitle {
-  font-size: 25px;
+  font-size: 27px;
   font-weight: bold;
   margin: 25px 0;
-  color: white; }
+  color: #D8D6D4;
+  font-family: 'Oswald', sans-serif; }
 
 h3.showInfoTitle {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   margin: 25px 0;
-  color: white; }
+  color: #D8D6D4;
+  font-family: 'Oswald', sans-serif; }
 
 .planetInfoTable {
   width: 50%;
@@ -271,8 +277,8 @@ h3.showInfoTitle {
   .planetInfoTable td {
     font-size: 20px;
     padding: 10px 0;
-    color: white;
-    border: 1px solid red; }
+    color: #D8D6D4;
+    border: 3px solid #3C6472; }
 
 .planetInfoP {
   font-size: 20px;
@@ -282,7 +288,7 @@ h3.showInfoTitle {
   margin-top: 15px;
   padding: 10px;
   text-align: left;
-  color: #fdfdfd;
+  color: #D8D6D4;
   border-radius: 35px;
   background: rgba(255, 255, 255, 0.2); }
 
@@ -306,7 +312,7 @@ h3.showInfoTitle {
   height: 100%; }
 
 .swiper-slide {
-  color: white; }
+  color: #D8D6D4; }
 
 .presentation {
   width: 100%;
@@ -335,7 +341,7 @@ h3.showInfoTitle {
   width: 100%;
   left: 0;
   top: 50%;
-  background: red; }
+  background: #3C6472; }
 
 .crossedBlock:before {
   content: "";
@@ -344,7 +350,7 @@ h3.showInfoTitle {
   width: 1px;
   left: 50%;
   top: 0;
-  background: red; }
+  background: #3C6472; }
 
 .flexBlockLine {
   height: 50%;
@@ -371,10 +377,7 @@ h3.showInfoTitle {
   .flexBlockCellImg img {
     width: 100%;
     height: 100%;
-    vertical-align: top;
-    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-    .flexBlockCellImg img:hover {
-      transform: scale(1.1); }
+    vertical-align: top; }
 
 .flexBlockCellTable {
   overflow: auto; }
@@ -385,7 +388,7 @@ h3.showInfoTitle {
     .flexBlockCellTable table td {
       width: 50%;
       padding: 10px 5px;
-      border: 1px solid red; }
+      border: 3px solid #3C6472; }
     .flexBlockCellTable table caption {
       padding: 5px 0; }
 
@@ -403,11 +406,12 @@ h3.showInfoTitle {
   position: absolute;
   font-size: 60px;
   font-weight: bold;
-  color: red;
+  color: #3C6472;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  letter-spacing: .5em; }
+  letter-spacing: .8em;
+  font-family: 'Oswald', sans-serif; }
 
 .swiper-button-prev,
 .swiper-button-next {
@@ -427,3 +431,68 @@ h3.showInfoTitle {
 
 .swiper-button-next {
   right: 25px; }
+
+.sk-cube-grid {
+  width: 100px;
+  height: 100px;
+  margin: 100px auto; }
+
+.sk-cube-grid .sk-cube {
+  width: 33%;
+  height: 33%;
+  background-color: #3C6472;
+  float: left;
+  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+  animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; }
+
+.sk-cube-grid .sk-cube1 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s; }
+
+.sk-cube-grid .sk-cube2 {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s; }
+
+.sk-cube-grid .sk-cube3 {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s; }
+
+.sk-cube-grid .sk-cube4 {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s; }
+
+.sk-cube-grid .sk-cube5 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s; }
+
+.sk-cube-grid .sk-cube6 {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s; }
+
+.sk-cube-grid .sk-cube7 {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s; }
+
+.sk-cube-grid .sk-cube8 {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s; }
+
+.sk-cube-grid .sk-cube9 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s; }
+
+@-webkit-keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+    transform: scale3D(1, 1, 1); }
+  35% {
+    -webkit-transform: scale3D(0, 0, 1);
+    transform: scale3D(0, 0, 1); } }
+
+@keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+    transform: scale3D(1, 1, 1); }
+  35% {
+    -webkit-transform: scale3D(0, 0, 1);
+    transform: scale3D(0, 0, 1); } }

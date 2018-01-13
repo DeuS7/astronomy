@@ -1,7 +1,7 @@
 /*function hidePreloader() {
 	setTimeout(function() {
 		preloader.classList.add("done");
-	}, 4000);
+	}, 6000);
 };
 
 var currentPercentage = 0,

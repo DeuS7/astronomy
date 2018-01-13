@@ -4,8 +4,8 @@ $subColor: black;
 
 
 //fonts///////////////////////////////////////////
-$mainFont: font;
-$subFont: font;
+$mainFont: 'Montserrat', sans-serif;
+$subFont: 'Oswald', sans-serif;
 
 //Classes///////////////////////////////////////////
 h1 {
@@ -57,7 +57,7 @@ html {
 body {
 	color: black;
 	font-size: 2rem;
-	font-family: "Arial", sans-serif;
+	font-family: $mainFont;
 }
 .container {
 	margin: 0 auto;
