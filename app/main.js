@@ -609,7 +609,7 @@ scene.add(pluto_orbit);
 var charon, charon_geom, charon_mat;
 charon_geom = new THREE.SphereGeometry(100, 40, 40);
 
-var charon_texture = new THREE.TextureLoader().load('images/charon.png');
+var charon_texture = new THREE.TextureLoader().load('images/charon.jpg');
 charon_texture.anisotropy = 8;
 var charon_mat = new THREE.MeshLambertMaterial({
 	map: charon_texture,
