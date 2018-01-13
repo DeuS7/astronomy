@@ -10,11 +10,11 @@ var plutoCharo = {
 
 //
 var PHx,
-		PHz,
-		PHy;
+PHz,
+PHy;
 
 var EMx,
-	EMz;
+EMz;
 //
 
 var rotationFactor = 2*Math.PI*7/360; //To make planet look at the sun while rotation. Deprecated.
@@ -34,7 +34,7 @@ var planetSettings = {
 		zoomFactor: -6 //Shows how close should camera be while "ShowPlanet" 
 	},
 	earthMoon: {
-		orbit: 6000,
+		orbit: 6500,
 		rotation: 0.05,
 		speedFactor: 0.1,
 		zoomFactor: 2
@@ -47,14 +47,14 @@ var planetSettings = {
 		orbit: 6000
 	},
 	moon: {
-		localOrbit: 600,
+		localOrbit: 1300,
 		rotation: 0.05,
 		speedFactor: 1,
 		zoomFactor: 2,
 		orbit: 6000
 	},
 	mars: {
-		orbit: 7500,
+		orbit: 8300,
 		rotation: 0.05,
 		speedFactor: 0.08,
 		zoomFactor: 2
@@ -348,7 +348,7 @@ var jupiter_orbit_mat = new THREE.ParticleBasicMaterial({
 //Jupiter Rings
 var ring_jupiter_main_geom = new THREE.Geometry();
 var ring_jupiter_main_mat = new THREE.ParticleBasicMaterial({
-	color: "#565656",
+	color: "#dddddd",
 	opacity: 0.3,
 	size: 1,
 	sizeAttenuation: false
@@ -370,7 +370,7 @@ scene.add(ring_jupiter_main);
 
 var ring_jupiter_additional_geom = new THREE.Geometry();
 var ring_jupiter_additional_mat = new THREE.ParticleBasicMaterial({
-	color: "#dddddd",
+	color: "#565656",
 	opacity: 0.3,
 	size: 1,
 	sizeAttenuation: false
@@ -393,7 +393,7 @@ scene.add(ring_jupiter_additional);
 
 var ring_jupiter_additional_sub_geom = new THREE.Geometry();
 var ring_jupiter_additional_sub_mat = new THREE.ParticleBasicMaterial({
-	color: "#53365e",
+	color: "#a5703b",
 	opacity: 0.3,
 	size: 1,
 	sizeAttenuation: false
@@ -445,7 +445,7 @@ scene.add(saturn);
 
 var ring_saturn_geom = new THREE.Geometry();
 var ring_saturn_mat = new THREE.PointCloudMaterial({
-	color: "#cecece",
+	color: "#666666",
 	opacity: 1,
 	size: 1,
 	sizeAttenuation: false
@@ -521,7 +521,7 @@ scene.add(uranus_orbit);
 
 var ring_uranus_geom = new THREE.Geometry();
 var ring_uranus_mat = new THREE.ParticleBasicMaterial({
-	color: "#cecece",
+	color: "#666666",
 	opacity: 0.3,
 	size: 1,
 	sizeAttenuation: false
@@ -629,7 +629,10 @@ charon.castShadow = true;
 scene.add(charon);
 
 //render
-render = new THREE.WebGLRenderer();
+if ( Detector.webgl )
+	render = new THREE.WebGLRenderer( {antialias:true} );
+else
+	render = new THREE.CanvasRenderer(); 
 render.setSize(W,H);
 render.setClearColor (0x000000, 1);
 container.appendChild(render.domElement);
@@ -728,11 +731,14 @@ function animate() {
 
 	pluto.position.x = Math.sin(-ts*planetSettings.charon.speedFactor)*planetSettings.pluto.localOrbit + PHx;
 	pluto.position.z = -Math.cos(-ts*planetSettings.charon.speedFactor)*planetSettings.pluto.localOrbit + PHz;
-	pluto.position.y = PHy;
+
+	pluto.position.y = Math.sin(-ts*planetSettings.pluto.speedFactor)*planetSettings.pluto.localOrbit*planetSettings.pluto.verticalOrbitFactor + PHy;
 
 	charon.position.x = Math.sin(ts*planetSettings.charon.speedFactor)*planetSettings.charon.localOrbit + PHx;
 	charon.position.z = Math.cos(ts*planetSettings.charon.speedFactor)*planetSettings.charon.localOrbit + PHz;
-	charon.position.y = PHy;
+
+	charon.position.y = Math.sin(ts*planetSettings.charon.speedFactor)*planetSettings.charon.localOrbit*planetSettings.charon.verticalOrbitFactor + PHy;
+
 
 	plutoCharo.position.x = PHx;
 	plutoCharo.position.y = PHy;
@@ -748,9 +754,9 @@ function animate() {
 		camera.position.x = x * 21;
 		camera.lookAt(scene.position);
 
-		t += Math.PI/180*7;
+		t += 0.1;
 	}
-	ts += Math.PI/180*7;
+	ts += 0.1;
 
 	render.render(scene, camera);
 }
